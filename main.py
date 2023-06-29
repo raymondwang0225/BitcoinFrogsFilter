@@ -3,6 +3,7 @@ from typing import List
 from dataclasses import dataclass
 from itertools import product
 import json;
+from PIL import Image
 
 
 
@@ -46,12 +47,13 @@ def main():
         st.write("Filtered Frogs:")
         for frog in filtered_frogs:
             #st.write(frog)
-            url = "https://ordiscan.com/content/"+str(frog["inscription_id"])
+            url = Image.open("https://ordiscan.com/content/"+str(frog["inscription_id"]))
+            
             print(url)
             width = 144  # 图片宽度（以像素为单位）
             height = 144  # 图片高度（以像素为单位）
             print(frog["item_name"])
-            st.image(url, caption="123", width=width, height=height)
+            st.image(url, caption=frog["item_name"])
 
 if __name__ == "__main__":
     main()
