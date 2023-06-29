@@ -47,7 +47,7 @@ def main():
         st.write("Filtered Frogs:")
         for frog in filtered_frogs:
             #st.write(frog)
-            url = Image.open("https://ordiscan.com/content/"+str(frog["inscription_id"]))
+            url = Image.open("https://ordiscan.com/content/c1cfea1de135919311f420641b3644d0bca63a047157a8713d9e6566087c5e7ei0"))
             
             print(url)
             width = 144  # 图片宽度（以像素为单位）
