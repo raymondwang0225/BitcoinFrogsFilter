@@ -5,6 +5,7 @@ from itertools import product
 import json;
 
 
+
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
 
@@ -44,7 +45,11 @@ def main():
         # 显示符合条件的人物
         st.write("Filtered Frogs:")
         for frog in filtered_frogs:
-            st.write(frog)
+            #st.write(frog)
+            url = "https://ordiscan.com/content/"+frog["inscription_id"]+".webp"
+            width = 576/4  # 图片宽度（以像素为单位）
+            height = 576/4  # 图片高度（以像素为单位）
+            st.image(url, caption=frog["item_name"], width=width, height=height)
 
 if __name__ == "__main__":
     main()
