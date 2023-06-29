@@ -49,7 +49,7 @@ def main():
             #st.write(frog)
             
             
-            print(url)
+            
             width = 144  # 图片宽度（以像素为单位）
             height = 144  # 图片高度（以像素为单位）
             print(frog["item_name"])
