@@ -48,12 +48,8 @@ def main():
         for frog in filtered_frogs:
             #st.write(frog)
             
-            
-            
-            width = 144  # 图片宽度（以像素为单位）
-            height = 144  # 图片高度（以像素为单位）
             print(frog["item_name"])
-            st.image('https://www.nasa.gov/sites/default/files/styles/ubernode_alt_horiz/public/images/464487main_AS11-40-5886_full.jpg', caption=frog["item_name"])
+            st.image('https://ord-mirror.magiceden.dev/content/0f20024d468acebf08bcce6ce87d351b51c782fab1154209ad5d66636b6afd3bi0.webp', caption=frog["item_name"])
 
 if __name__ == "__main__":
     main()
