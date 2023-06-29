@@ -47,13 +47,13 @@ def main():
         st.write("Filtered Frogs:")
         for frog in filtered_frogs:
             #st.write(frog)
-            url = Image.open("https://ordiscan.com/content/c1cfea1de135919311f420641b3644d0bca63a047157a8713d9e6566087c5e7ei0")
+            
             
             print(url)
             width = 144  # 图片宽度（以像素为单位）
             height = 144  # 图片高度（以像素为单位）
             print(frog["item_name"])
-            st.image(url, caption=frog["item_name"])
+            st.image('https://www.nasa.gov/sites/default/files/styles/ubernode_alt_horiz/public/images/464487main_AS11-40-5886_full.jpg', caption=frog["item_name"])
 
 if __name__ == "__main__":
     main()
