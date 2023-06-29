@@ -47,9 +47,11 @@ def main():
         for frog in filtered_frogs:
             #st.write(frog)
             url = "https://ordiscan.com/content/"+str(frog["inscription_id"])
+            print(url)
             width = 144  # 图片宽度（以像素为单位）
             height = 144  # 图片高度（以像素为单位）
-            st.image(url, caption=frog["item_name"], width=width, height=height)
+            print(frog["item_name"])
+            st.image(url, caption="123", width=width, height=height)
 
 if __name__ == "__main__":
     main()
