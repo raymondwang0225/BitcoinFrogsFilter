@@ -11,7 +11,7 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():
-    st.title("Frog Filter")
+    st.sidebar.title("Frog Filter")
     
     # 属性选项
     backgrounds = ["Brown", "Red", "Olive", "Grey", "Pink", "Dark Blue", "Orange", "Blue", "Green", "Light Blue", "Bitcoin Orange", "Black", "Yellow"]
@@ -21,14 +21,14 @@ def main():
     eyes = ["Dank Shades", "Happy", "Visor", "Monocle", "none", "Frown", "Powerful", "Golden Sunglasses", "Nakamoto Glasses", "Angry", "3D Glasses", "Purple Cosmic Eyes"]
 
     # 用户选择过滤条件
-    desired_backgrounds = st.multiselect("Select desired backgrounds", backgrounds)
-    desired_clothing = st.multiselect("Select desired clothing", clothing)
-    desired_bodies = st.multiselect("Select desired bodies", bodies)
-    desired_mouths = st.multiselect("Select desired mouths", mouths)
-    desired_eyes = st.multiselect("Select desired eyes", eyes)
+    desired_backgrounds = st.sidebar.multiselect("Select desired backgrounds", backgrounds)
+    desired_clothing = st.sidebar.multiselect("Select desired clothing", clothing)
+    desired_bodies = st.sidebar.multiselect("Select desired bodies", bodies)
+    desired_mouths = st.sidebar.multiselect("Select desired mouths", mouths)
+    desired_eyes = st.sidebar.multiselect("Select desired eyes", eyes)
 
     # "Apply Filter" 按钮
-    apply_filter = st.button("Apply Filter")
+    apply_filter = st.sidebar.button("Apply Filter")
 
     # 应用过滤器并获取最终结果
     if apply_filter:
