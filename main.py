@@ -45,11 +45,21 @@ def main():
 
         # 显示符合条件的人物
         st.write("Filtered Frogs:")
-        for frog in filtered_frogs:
-            #st.write(frog)
-            
-            print(frog["item_name"])
-            st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
+
+        col1, col2, col3 = st.beta_columns([1,6,1])
+
+        with col1:
+        st.write("")
+
+        with col2:
+            for frog in filtered_frogs:
+                #st.write(frog)
+                
+                print(frog["item_name"])
+                st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
+
+        with col3:
+        st.write("")
 
 if __name__ == "__main__":
     main()
