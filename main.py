@@ -13,7 +13,7 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():
-    st.sidebar.title("Frog Filter")
+    st.sidebar.title("Bitcoin Frogs Filter")
     
     # 属性选项
     backgrounds = ["Brown", "Red", "Olive", "Grey", "Pink", "Dark Blue", "Orange", "Blue", "Green", "Light Blue", "Bitcoin Orange", "Black", "Yellow"]
@@ -44,7 +44,7 @@ def main():
                            (not desired_eyes or frog["eyes"] in desired_eyes)]
 
         # 显示符合条件的人物
-        st.write("Filtered Frogs:")
+        st.write("Filtered Bitcoin Frogs:" + str(len(filtered_frogs)) + " Frogs")
         for frog in filtered_frogs:
             #st.write(frog)
             st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
