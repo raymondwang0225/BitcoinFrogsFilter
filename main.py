@@ -49,7 +49,7 @@ def main():
             #st.write(frog)
             
             print(frog["item_name"])
-            st.image('https://ordiscan.com/content/c1cfea1de135919311f420641b3644d0bca63a047157a8713d9e6566087c5e7ei0', caption=frog["item_name"])
+            st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"])
 
 if __name__ == "__main__":
     main()
