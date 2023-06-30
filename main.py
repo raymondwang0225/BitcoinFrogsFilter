@@ -66,8 +66,16 @@ def main():
         st.write("Filtered Bitcoin Frogs  :   [ " + str(len(filtered_frogs)) + " ] Frogs")
         for frog in filtered_frogs:
             frog["image_url"] = 'https://ordiscan.com/content/'+str(frog["inscription_id"])
+            frog["me_link"] = "https://magiceden.io/ordinals/item-details/" + str(frog["inscription_id"])
             #st.write(frog)
             #st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
+
+        # 定义文字超链接的HTML和CSS样式
+        link_html = """
+            <a href="{url}" target="_blank" style="position: absolute; top: 10px; left: 10px; color: blue;">
+                BUY
+            </a>
+        """
         
         # 定义每列的宽度
         col_width = 5
@@ -80,6 +88,10 @@ def main():
         # 显示图片
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
+                # 将变量传递给HTML代码中的URL
+                formatted_link_html = link_html.format(url=frog["me_link"])
+                st.markdown(formatted_link_html, unsafe_allow_html=True)
+                
                 st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
 
