@@ -22,6 +22,13 @@ with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
 
 filtered_frogs = []
+# 定义文字超链接的HTML和CSS样式
+link_html = """
+    <div style="display: flex; align-items: center;">
+        <span>{caption}</span>
+        <a href="{url}" target="_blank" style="margin-left: 10px; color: blue;">Click here</a>
+    </div>
+"""
 
 def main():    
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
@@ -51,6 +58,7 @@ def main():
     #sidebar_empty = st.sidebar.empty()
     #sidebar_empty.markdown("Powered by Ribbit Plus")
     
+    
     # 应用过滤器并获取最终结果
     if apply_filter:
         
@@ -70,13 +78,7 @@ def main():
             #st.write(frog)
             #st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
 
-        # 定义文字超链接的HTML和CSS样式
-        link_html = """
-            <div style="display: flex; align-items: center;">
-                <span>{caption}</span>
-                <a href="{url}" target="_blank" style="margin-left: 10px; color: blue;">Click here</a>
-            </div>
-        """
+       
         
         # 定义每列的宽度
         col_width = 5
