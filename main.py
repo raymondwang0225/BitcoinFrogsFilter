@@ -87,9 +87,9 @@ def main():
             with cols[i % col_width]:
                 link_url = frog["me_link"]
                 link_name = frog["item_name"] 
-                caption = f"{link_name} : {link_url}"
-                st.image(frog["image_url"],caption=caption,width=576/4)
-                
+                caption = f"({link_name})({link_url})"
+                st.image(frog["image_url"],width=576/4)
+                st.markdown(caption)
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
