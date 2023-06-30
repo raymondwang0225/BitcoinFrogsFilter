@@ -87,9 +87,10 @@ def main():
             with cols[i % col_width]:
                 link_url = frog["me_link"]
                 link_name = frog["item_name"] 
-                caption = f"[{link_name}]({link_url})"
+                #caption = f"[{link_name}]({link_url})"
+                caption =f"<div style='text-align: center;'><a href='{link_url}'>{link_name}</a></div>"
                 st.image(frog["image_url"],width=576/4)
-                st.markdown(caption)
+                st.markdown(caption, unsafe_allow_html=True)
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
