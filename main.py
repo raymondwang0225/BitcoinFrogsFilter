@@ -19,7 +19,7 @@ GitHub Repository: <https://github.com/giswqs/streamlit-multipage-template>
 """
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     st.sidebar.title("Bitcoin Frogs")
-    st.sidebar.info("Floor Price (ME) : ")
+    st.sidebar.info(markdown)
     st.sidebar.title("Floor Price (ME) : ")
     st.sidebar.title("Traits Filter")
     
