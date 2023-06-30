@@ -85,9 +85,10 @@ def main():
         # 显示图片
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
-                link_markdown = frog["item_name"].format(frog["me_link"])
-                st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
-                st.markdown(link_markdown)
+                link_url = frog["me_link"]
+                caption = f"frog["item_name"]({link_url})"
+                st.image(frog["image_url"],width=576/4)
+                st.markdown(caption)
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
