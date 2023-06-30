@@ -54,7 +54,7 @@ def main():
         col_width = 5
         
         # 间距的像素值
-        spacing = 200  
+        #spacing = 200  
 
         # 创建网格布局
         cols = st.columns(col_width)
@@ -62,7 +62,7 @@ def main():
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
                 st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
-            st.write("&nbsp;" * spacing, unsafe_allow_html=True)
+            #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
