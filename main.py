@@ -15,6 +15,8 @@ floor_price = float(json_data['floorPrice'])*0.00000001
 rounded_floor_price = round(floor_price, 3)
 owners = int(json_data["owners"])
 totalListed =int(json_data["totalListed"])
+totalVolume = float(json_data['totalVolume'])*0.00000001
+rounded_totalVolume = round(totalVolume, 3)
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
@@ -22,7 +24,7 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():    
-    st.write("Main Info - ","Floor Price (ME) : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed)
+    st.write("Floor Price (ME) : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     #st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
