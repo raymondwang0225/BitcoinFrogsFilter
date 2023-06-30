@@ -4,8 +4,15 @@ from dataclasses import dataclass
 from itertools import product
 import json;
 from PIL import Image
+import requests
 
-
+url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
+bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
+headers = {'Authorization': 'Bearer ' + bearer_token}
+response = requests.get(url, headers=headers)
+json_data = json.loads(response.text)
+floor_price = float(json_data['floorPrice'])*0.00000001
+rounded_floor_price = round(floor_price, 3)
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
@@ -13,21 +20,10 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():    
-    markdown ="""
-    <style>
-    /* 修改侧边栏info文本的颜色 */
-    .element-container .element-info {
-        color: red !important;
-    }
-    </style>
-    ""","""
-Web App URL: <https://template.streamlitapp.com>
-GitHub Repository: <https://github.com/giswqs/streamlit-multipage-template>
-"""
+    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     st.sidebar.title("Bitcoin Frogs")
-    st.sidebar.info(markdown)
-    
+    st.write(rounded_floor_price)
     st.sidebar.title("Traits Filter")
     
     # 属性选项
