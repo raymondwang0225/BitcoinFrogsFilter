@@ -56,7 +56,7 @@ def main():
         # 创建网格布局
         cols = st.columns(col_width)
         # 显示图片
-        for i, frog in filtered_frogs:
+        for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
                 st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
 
