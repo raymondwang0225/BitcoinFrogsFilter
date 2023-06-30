@@ -13,6 +13,13 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():
+    st.markdown("""
+  <style>
+    .css-o18uir.e16nr0p33 {
+      margin-top: -75px;
+    }
+  </style>
+""", unsafe_allow_html=True)
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     
     st.sidebar.title("Bitcoin Frogs Traits Filter")
