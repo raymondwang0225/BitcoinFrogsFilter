@@ -22,12 +22,12 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():    
-    st.write("Floor Price (ME) : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed)
-    st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
-    st.sidebar.title("Floor Price (ME) : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed)
+    st.write("Main Info - ","Floor Price (ME) : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed)
+    #st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
+   
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
-    st.sidebar.title("Bitcoin Frogs")
-    st.sidebar.title("Traits Filter")
+    #st.sidebar.title("Bitcoin Frogs")
+    st.sidebar.title("Bitcoin Frogs Traits Filter")
     
     # 属性选项
     backgrounds = ["Brown", "Red", "Olive", "Grey", "Pink", "Dark Blue", "Orange", "Blue", "Green", "Light Blue", "Bitcoin Orange", "Black", "Yellow"]
