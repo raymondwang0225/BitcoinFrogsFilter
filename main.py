@@ -13,14 +13,21 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():    
-    markdown = """
+    markdown ="""
+    <style>
+    /* 修改侧边栏info文本的颜色 */
+    .element-container .element-info {
+        color: red !important;
+    }
+    </style>
+    ""","""
 Web App URL: <https://template.streamlitapp.com>
 GitHub Repository: <https://github.com/giswqs/streamlit-multipage-template>
 """
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     st.sidebar.title("Bitcoin Frogs")
     st.sidebar.info(markdown)
-    st.sidebar.title("Floor Price (ME) : ")
+    
     st.sidebar.title("Traits Filter")
     
     # 属性选项
