@@ -88,8 +88,9 @@ def main():
                 link_url = frog["me_link"]
                 link_name = frog["item_name"] 
                 caption = f"[{link_name}]({link_url})"
-                #caption =f"<div style='text-align: center;'><a href='{link_url}'>{link_name}</a></div>"
-                st.image(frog["image_url"],width=576/4)
+                
+                #st.image(frog["image_url"],width=576/4)
+                st.image(frog["image_url"],use_column_width = True)
                 
                 st.markdown(caption, unsafe_allow_html=True)
                 
