@@ -63,7 +63,7 @@ def main():
                            (not desired_eyes or frog["eyes"] in desired_eyes)]
 
         # 显示符合条件的人物
-        st.write("Filtered Bitcoin Frogs:   [ " + str(len(filtered_frogs)) + " ] Frogs")
+        st.write("Filtered Bitcoin Frogs  :   [ " + str(len(filtered_frogs)) + " ] Frogs")
         for frog in filtered_frogs:
             frog["image_url"] = 'https://ordiscan.com/content/'+str(frog["inscription_id"])
             #st.write(frog)
