@@ -54,7 +54,7 @@ def main():
         col_width = 5
 
         # 创建网格布局
-        cols = st.beta_columns(col_width)
+        cols = st.columns(col_width)
         # 显示图片
         for i, frog in filtered_frogs:
             with cols[i % col_width]:
