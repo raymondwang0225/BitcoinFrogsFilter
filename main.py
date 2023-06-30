@@ -34,6 +34,7 @@ def main():
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
 
+    sidebar_empty = st.sidebar.empty()
     sidebar_empty.markdown("Powered by Ribbit Plus")
     
     # 应用过滤器并获取最终结果
