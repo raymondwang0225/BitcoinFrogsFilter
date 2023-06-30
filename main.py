@@ -86,9 +86,10 @@ def main():
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
                 link_url = frog["me_link"]
-                caption = f"[BUY]({link_url})"
-                st.image(frog["image_url"],caption=frog["item_name"],width=576/4)
-                st.markdown(caption)
+                link_name = frog["item_name"] 
+                caption = f"({link_name})({link_url})"
+                st.image(frog["image_url"],caption=caption,width=576/4)
+                
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
