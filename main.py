@@ -23,6 +23,8 @@ with open('bitcoin_frogs_items.json') as f:
 
 filtered_frogs = []
 
+# 设置页面的宽度
+st.set_page_config(layout="wide")
 
 def main():
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
