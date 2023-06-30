@@ -25,7 +25,6 @@ filtered_frogs = []
 
 
 def main():
-    st.header("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
     #st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
    
@@ -76,7 +75,7 @@ def main():
        
         
         # 定义每列的宽度
-        col_width = 5
+        col_width = 10
         
         # 间距的像素值
         #spacing = 200  
