@@ -22,13 +22,7 @@ with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
 
 filtered_frogs = []
-# 定义文字超链接的HTML和CSS样式
-link_html = """
-    <div style="display: flex; align-items: center;">
-        <span>{caption}</span>
-        <a href="{url}" target="_blank" style="margin-left: 10px; color: blue;">Click here</a>
-    </div>
-"""
+
 
 def main():    
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
@@ -91,11 +85,9 @@ def main():
         # 显示图片
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
-                # 将变量传递给HTML代码
-                _caption = frog["item_name"]
-                _link_url = frog["me_link"]
-                formatted_link_html = link_html.format(caption=_caption, url=_link_url)
-                st.image(frog["image_url"], caption=formatted_link_html,width=576/4,unsafe_allow_html=True)
+                link_markdown = frog["item_name"].format(frog["me_link"])
+                st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
+                st.markdown(link_markdown)
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
