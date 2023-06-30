@@ -95,7 +95,7 @@ def main():
                 _caption = frog["item_name"]
                 _link_url = frog["me_link"]
                 formatted_link_html = link_html.format(caption=_caption, url=_link_url)
-                st.image(frog["image_url"], caption=formatted_link_html,width=576/4)
+                st.image(frog["image_url"], caption=formatted_link_html,width=576/4,unsafe_allow_html=True)
                  
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
