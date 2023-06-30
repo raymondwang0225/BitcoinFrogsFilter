@@ -24,7 +24,8 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 
-def main():    
+def main():
+    st.header("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
     #st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
    
