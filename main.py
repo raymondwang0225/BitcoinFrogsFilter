@@ -31,10 +31,10 @@ def main():
 
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
-
+    
     # 应用过滤器并获取最终结果
     if apply_filter:
-       
+        
         # 根据条件过滤人物
         filtered_frogs = [frog for frog in data if
                            (not desired_backgrounds or frog["background"]  in desired_backgrounds) and
@@ -46,8 +46,19 @@ def main():
         # 显示符合条件的人物
         st.write("Filtered Bitcoin Frogs:   [ " + str(len(filtered_frogs)) + " ] Frogs")
         for frog in filtered_frogs:
+            frog["image_url"] = 'https://ordiscan.com/content/'+str(frog["inscription_id"])
             #st.write(frog)
-            st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
+            #st.image('https://ordiscan.com/content/'+str(frog["inscription_id"]), caption=frog["item_name"],width=576/2)
+        
+        # 定义每列的宽度
+        col_width = 5
+
+        # 创建网格布局
+        cols = st.beta_columns(col_width)
+        # 显示图片
+        for i, frog in filtered_frogs:
+            with cols[i % col_width]:
+                st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
 
 if __name__ == "__main__":
     main()
