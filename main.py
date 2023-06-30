@@ -90,7 +90,7 @@ def main():
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
                 # 将变量传递给HTML代码
-                formatted_link_html = link_html.format(caption=frog["item_name"], url=url=frog["me_link"])
+                formatted_link_html = link_html.format(caption=frog["item_name"], url=frog["me_link"])
                 st.image(frog["image_url"], caption=formatted_link_html,width=576/4)
                  
                 
