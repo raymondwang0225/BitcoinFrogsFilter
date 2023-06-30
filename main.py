@@ -72,9 +72,10 @@ def main():
 
         # 定义文字超链接的HTML和CSS样式
         link_html = """
-            <a href="{url}" target="_blank" style="position: absolute; top: 10px; left: 10px; color: blue;">
-                BUY
-            </a>
+            <div style="display: flex; align-items: center;">
+                <span>{caption}</span>
+                <a href="{url}" target="_blank" style="margin-left: 10px; color: blue;">Click here</a>
+            </div>
         """
         
         # 定义每列的宽度
@@ -88,10 +89,11 @@ def main():
         # 显示图片
         for i, frog in enumerate(filtered_frogs):
             with cols[i % col_width]:
-                st.image(frog["image_url"], caption=frog["item_name"],width=576/4)
-                 # 将变量传递给HTML代码中的URL
-                formatted_link_html = link_html.format(url=frog["me_link"])
-                st.markdown(formatted_link_html, unsafe_allow_html=True)
+                # 将变量传递给HTML代码
+                formatted_link_html = link_html.format(caption=frog["item_name"], url=url=frog["me_link"])
+                st.image(frog["image_url"], caption=formatted_link_html,width=576/4)
+                 
+                
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
 
 if __name__ == "__main__":
