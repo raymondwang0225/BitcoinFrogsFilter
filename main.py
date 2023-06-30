@@ -54,7 +54,7 @@ def main():
         col_width = 5
         
         # 间距的像素值
-        spacing = 20  
+        spacing = 200  
 
         # 创建网格布局
         cols = st.columns(col_width)
