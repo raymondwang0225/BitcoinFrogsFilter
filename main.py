@@ -75,7 +75,7 @@ def main():
        
         
         # 定义每列的宽度
-        col_width = 10
+        col_width = 5
         
         # 间距的像素值
         #spacing = 200  
