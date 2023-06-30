@@ -14,7 +14,7 @@ filtered_frogs = []
 
 def main():
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
-    st.sidebar.markdown("Powered by Ribbit Plus")
+    
     st.sidebar.title("Bitcoin Frogs Traits Filter")
     
     # 属性选项
@@ -33,6 +33,8 @@ def main():
 
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
+
+    sidebar_empty.markdown("Powered by Ribbit Plus")
     
     # 应用过滤器并获取最终结果
     if apply_filter:
