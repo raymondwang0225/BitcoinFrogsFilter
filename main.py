@@ -13,15 +13,9 @@ with open('bitcoin_frogs_items.json') as f:
 filtered_frogs = []
 
 def main():
-    st.markdown("""
-  <style>
-    .css-znku1x.e16nr0p33 {
-      margin-top: -75px;
-    }
-  </style>
-""", unsafe_allow_html=True)
+   
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
-    
+    st.sidebar.title("Floor Price (ME) : ")
     st.sidebar.title("Bitcoin Frogs Traits Filter")
     
     # 属性选项
@@ -41,8 +35,8 @@ def main():
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
 
-    sidebar_empty = st.sidebar.empty()
-    sidebar_empty.markdown("Powered by Ribbit Plus")
+    #sidebar_empty = st.sidebar.empty()
+    #sidebar_empty.markdown("Powered by Ribbit Plus")
     
     # 应用过滤器并获取最终结果
     if apply_filter:
