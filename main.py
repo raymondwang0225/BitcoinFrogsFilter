@@ -23,6 +23,18 @@ with open('bitcoin_frogs_items.json') as f:
 
 filtered_frogs = []
 
+# 设置flexbox布局样式
+st.markdown(
+    """
+    <style>
+    .centered-caption {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 def main():    
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," (Magic Eden)")
@@ -90,8 +102,9 @@ def main():
                 caption = f"[{link_name}]({link_url})"
                 #caption =f"<div style='text-align: center;'><a href='{link_url}'>{link_name}</a></div>"
                 st.image(frog["image_url"],width=576/4)
-                st.markdown(caption, unsafe_allow_html=True)
-                 
+                st.markdown(f"<p class='centered-caption'>{caption}</p>", unsafe_allow_html=True) 
+                #st.markdown(caption, unsafe_allow_html=True)
+                
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
 
