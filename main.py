@@ -46,6 +46,9 @@ def main():
     desired_mouths = st.sidebar.multiselect("Select desired mouths", mouths)
     desired_eyes = st.sidebar.multiselect("Select desired eyes", eyes)
 
+    # 创建一个滑动条
+    column_value = st.sidebar.slider("Column display quantity", min_value=1, max_value=10, value=5, step=1)
+    
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
 
@@ -75,7 +78,7 @@ def main():
        
         
         # 定义每列的宽度
-        col_width = 5
+        col_width = column_value
         
         # 间距的像素值
         #spacing = 200  
