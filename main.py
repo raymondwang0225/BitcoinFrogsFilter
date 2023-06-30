@@ -49,7 +49,7 @@ def main():
     desired_eyes = st.sidebar.multiselect("Select desired eyes", eyes)
 
     # 创建一个滑动条
-    column_value = st.sidebar.slider("Column display quantity", min_value=1, max_value=10, value=5, step=1)
+    column_value = st.sidebar.slider("Column display quantity", min_value=1, max_value=11, value=10, step=1)
     
     # "Apply Filter" 按钮
     apply_filter = st.sidebar.button("Apply Filter")
