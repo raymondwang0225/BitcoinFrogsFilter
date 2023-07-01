@@ -54,10 +54,10 @@ def main():
     eyes = ["Dank Shades", "Happy", "Visor", "Monocle", "none", "Frown", "Powerful", "Golden Sunglasses", "Nakamoto Glasses", "Angry", "3D Glasses", "Purple Cosmic Eyes"]
 
     # 用户选择过滤条件
-    desired_backgrounds = st.sidebar.multiselect("Backgrounds", backgrounds)
+    desired_backgrounds = st.sidebar.multiselect("Background", backgrounds)
     desired_clothing = st.sidebar.multiselect("Clothing", clothing)
-    desired_bodies = st.sidebar.multiselect("Bodies", bodies)
-    desired_mouths = st.sidebar.multiselect("Mouths", mouths)
+    desired_bodies = st.sidebar.multiselect("Body", bodies)
+    desired_mouths = st.sidebar.multiselect("Mouth", mouths)
     desired_eyes = st.sidebar.multiselect("Eyes", eyes)
     #desired_backgrounds = st.sidebar.multiselect("Select desired backgrounds", backgrounds)
     #desired_clothing = st.sidebar.multiselect("Select desired clothing", clothing)
