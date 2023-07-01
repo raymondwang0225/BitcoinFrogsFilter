@@ -12,11 +12,11 @@ headers = {'Authorization': 'Bearer ' + bearer_token}
 response = requests.get(url, headers=headers)
 json_data = json.loads(response.text)
 floor_price = float(json_data['floorPrice'])*0.00000001
-rounded_floor_price = round(floor_price, 3)
+rounded_floor_price = round(floor_price, 4)
 owners = int(json_data["owners"])
 totalListed =int(json_data["totalListed"])
 totalVolume = float(json_data['totalVolume'])*0.00000001
-rounded_totalVolume = round(totalVolume, 3)
+rounded_totalVolume = round(totalVolume, 4)
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
