@@ -30,9 +30,8 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <style>
-    .rounded-image {
+    .rounded-image img {
         border-radius: 10px;
-        overflow: hidden;
     }
     </style>
     """,
@@ -110,7 +109,7 @@ def main():
                 #st.image(frog["image_url"],width=576/4)
                 st.image(frog["image_url"],use_column_width = True,key="rounded-image")
                 
-                st.markdown(caption, unsafe_allow_html=True)
+                st.markdown(f'<div class="rounded-image">{image}</div>',caption, unsafe_allow_html=True)
                 
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
