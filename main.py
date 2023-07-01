@@ -30,15 +30,15 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    #st.write("[Magic Eden]")
+    st.write("[Magic Eden]")
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5= st.columns(5)
 
-    col1.metric("Floor Price [ME]", rounded_floor_price,"N/A") 
+    col1.metric("Floor Price", rounded_floor_price,"N/A") 
     col2.metric("Owners", owners,"N/A") 
-    col3.metric("Total Listed [ME]", totalListed,"N/A") 
-    col4.metric("Pending Transactions [ME]", pending,"N/A") 
-    col5.metric("Total Volume [ME]", rounded_totalVolume,"N/A") 
+    col3.metric("Total Listed", totalListed,"N/A") 
+    col4.metric("Pending Transactions", pending,"N/A") 
+    col5.metric("Total Volume", rounded_totalVolume,"N/A") 
     st.markdown("<hr/>", unsafe_allow_html = True)
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
