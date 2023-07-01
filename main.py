@@ -39,7 +39,7 @@ def main():
     col3.metric("Total Listed", totalListed,"N/A") 
     col4.metric("Pending Transactions", pending,"N/A") 
     col5.metric("Total Volume", rounded_totalVolume,"N/A") 
-    st.write("Data From Magic Eden")
+    
     st.markdown("<hr/>", unsafe_allow_html = True)
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
