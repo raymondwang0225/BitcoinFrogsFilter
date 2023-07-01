@@ -30,19 +30,6 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    colA, colB, colC = st.columns(3)
-
-    with colA:
-       st.header("Bitcoin Frogs")
-       
-    
-    with colB:
-       st.header("Supply : 10000")
-       
-    
-    with colC:
-       st.header("Range : #381224 - #412389")
-       
     
     st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
