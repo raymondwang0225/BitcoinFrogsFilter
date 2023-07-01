@@ -17,6 +17,7 @@ owners = int(json_data["owners"])
 totalListed =int(json_data["totalListed"])
 totalVolume = float(json_data['totalVolume'])*0.00000001
 rounded_totalVolume = round(totalVolume, 4)
+pending = int(json_data["pendingTransactions"])
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
@@ -31,12 +32,13 @@ st.set_page_config(layout="wide")
 def main():
     #st.write("[Magic Eden]")
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
-    col1, col2, col3 ,col4= st.columns(4)
+    col1, col2, col3 ,col4= st.columns(5)
 
-    col1.metric("Floor Price [ME]", rounded_floor_price) 
-    col2.metric("Owners", owners) 
-    col3.metric("Total Listed [ME]", totalListed) 
-    col4.metric("Total Volume [ME]", rounded_totalVolume) 
+    col1.metric("Floor Price [ME]", rounded_floor_price,"N/A") 
+    col2.metric("Owners", owners,"N/A") 
+    col3.metric("Total Listed [ME]", totalListed,"N/A") 
+    col4.metric("Pending Transactions [ME]", pending,"N/A") 
+    col5.metric("Total Volume [ME]", rounded_totalVolume,"N/A") 
     st.markdown("<hr/>", unsafe_allow_html = True)
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
