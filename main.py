@@ -54,11 +54,16 @@ def main():
     eyes = ["Dank Shades", "Happy", "Visor", "Monocle", "none", "Frown", "Powerful", "Golden Sunglasses", "Nakamoto Glasses", "Angry", "3D Glasses", "Purple Cosmic Eyes"]
 
     # 用户选择过滤条件
-    desired_backgrounds = st.sidebar.multiselect("Select desired backgrounds", backgrounds)
-    desired_clothing = st.sidebar.multiselect("Select desired clothing", clothing)
-    desired_bodies = st.sidebar.multiselect("Select desired bodies", bodies)
-    desired_mouths = st.sidebar.multiselect("Select desired mouths", mouths)
-    desired_eyes = st.sidebar.multiselect("Select desired eyes", eyes)
+    desired_backgrounds = st.sidebar.multiselect("Backgrounds", backgrounds)
+    desired_clothing = st.sidebar.multiselect("Clothing", clothing)
+    desired_bodies = st.sidebar.multiselect("Bodies", bodies)
+    desired_mouths = st.sidebar.multiselect("Mouths", mouths)
+    desired_eyes = st.sidebar.multiselect("Eyes", eyes)
+    #desired_backgrounds = st.sidebar.multiselect("Select desired backgrounds", backgrounds)
+    #desired_clothing = st.sidebar.multiselect("Select desired clothing", clothing)
+    #desired_bodies = st.sidebar.multiselect("Select desired bodies", bodies)
+    #desired_mouths = st.sidebar.multiselect("Select desired mouths", mouths)
+    #desired_eyes = st.sidebar.multiselect("Select desired eyes", eyes)
 
     # 创建一个滑动条
     column_value = st.sidebar.slider("Column display quantity", min_value=1, max_value=11, value=10, step=1)
