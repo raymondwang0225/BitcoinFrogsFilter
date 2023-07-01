@@ -109,7 +109,7 @@ def main():
                 #st.image(frog["image_url"],width=576/4)
                 image = st.image(frog["image_url"],use_column_width = True)
                 st.markdown(f'<div class="rounded-image">{image}</div>', unsafe_allow_html=True)
-                st.markdown(caption, unsafe_allow_html=True)
+                #st.markdown(caption, unsafe_allow_html=True)
                 
                 
             #st.write("&nbsp;" * spacing, unsafe_allow_html=True)
