@@ -26,6 +26,19 @@ filtered_frogs = []
 # 设置页面的宽度
 st.set_page_config(layout="wide")
 
+# 添加自定义 CSS 样式
+st.markdown(
+    """
+    <style>
+    .rounded-image {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 def main():
     st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume," [Magic Eden]")
     #st.write("<p style='margin-top: 20px; margin-bottom: 20px'></p>", unsafe_allow_html=True)
@@ -95,7 +108,7 @@ def main():
                 caption = f"[{link_name}]({link_url})"
                 
                 #st.image(frog["image_url"],width=576/4)
-                st.image(frog["image_url"],use_column_width = True)
+                st.image(frog["image_url"],use_column_width = True,key="rounded-image")
                 
                 st.markdown(caption, unsafe_allow_html=True)
                 
