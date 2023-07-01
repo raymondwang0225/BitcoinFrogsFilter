@@ -34,7 +34,7 @@ def main():
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 ,col6= st.columns(6)
 
-    col1.metric("Platform", "Magic Eden") 
+    col1.metric("Platform", "ME") 
     col2.metric("Floor Price", rounded_floor_price,"N/A") 
     col3.metric("Owners", owners,"N/A") 
     col4.metric("Total Listed", totalListed,"N/A") 
