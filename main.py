@@ -32,13 +32,14 @@ st.set_page_config(layout="wide")
 def main():
     #st.write("[Magic Eden]")
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
-    col1, col2, col3 ,col4 ,col5= st.columns(5)
+    col1, col2, col3 ,col4 ,col5 ,col6= st.columns(6)
 
-    col1.metric("Floor Price", rounded_floor_price,"N/A") 
-    col2.metric("Owners", owners,"N/A") 
-    col3.metric("Total Listed", totalListed,"N/A") 
-    col4.metric("Pending Transactions", pending,"N/A") 
-    col5.metric("Total Volume", rounded_totalVolume,"N/A") 
+    col1.metric("Platform", "Magic Eden") 
+    col2.metric("Floor Price", rounded_floor_price,"N/A") 
+    col3.metric("Owners", owners,"N/A") 
+    col4.metric("Total Listed", totalListed,"N/A") 
+    col5.metric("Pending Transactions", pending,"N/A") 
+    col6.metric("Total Volume", rounded_totalVolume,"N/A") 
     
     st.markdown("<hr/>", unsafe_allow_html = True)
    
