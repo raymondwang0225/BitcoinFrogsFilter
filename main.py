@@ -32,7 +32,7 @@ st.set_page_config(layout="wide")
 def main():
     #st.write("[Magic Eden]")
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
-    col1, col2, col3 ,col4= st.columns(5)
+    col1, col2, col3 ,col4 ,col5= st.columns(5)
 
     col1.metric("Floor Price [ME]", rounded_floor_price,"N/A") 
     col2.metric("Owners", owners,"N/A") 
