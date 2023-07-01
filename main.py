@@ -37,6 +37,7 @@ def main():
     col2.metric("Owners", owners) 
     col3.metric("Total Listed [ME]", totalListed) 
     col4.metric("Total Volume [ME]", rounded_totalVolume) 
+    st.markdown(“<hr/>”, unsafe_allow_html = True)
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     #st.sidebar.title("Bitcoin Frogs")
