@@ -29,14 +29,14 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    st.write("[Magic Eden]")
+    #st.write("[Magic Eden]")
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4= st.columns(4)
 
-    col1.metric("Floor Price", rounded_floor_price) 
+    col1.metric("Floor Price [Magic Eden]", rounded_floor_price) 
     col2.metric("Owners", owners) 
-    col3.metric("Total Listed", totalListed) 
-    col4.metric("Total Volume", rounded_totalVolume) 
+    col3.metric("Total Listed [Magic Eden]", totalListed) 
+    col4.metric("Total Volume [Magic Eden]", rounded_totalVolume) 
    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     #st.sidebar.title("Bitcoin Frogs")
