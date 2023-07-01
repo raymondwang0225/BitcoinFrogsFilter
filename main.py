@@ -30,7 +30,7 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    st.write("Magic Eden Data")
+    st.write("Bitcoin Frogs | Supply : 10000 | Inscription Range : 381224 - 412389)
     st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
