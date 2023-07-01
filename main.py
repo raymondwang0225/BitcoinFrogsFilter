@@ -31,7 +31,7 @@ st.set_page_config(layout="wide")
 
 def main():
     
-    st.markdown("<hr/>", unsafe_allow_html = True)
+    #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
 
