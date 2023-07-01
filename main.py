@@ -30,7 +30,7 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    st.write("Data From Magic Eden")
+    st.write("Magic Eden Data")
     st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
@@ -42,10 +42,10 @@ def main():
     col5.metric("Total Volume", rounded_totalVolume,"N/A") 
     
     st.markdown("<hr/>", unsafe_allow_html = True)
-    st.sidebar.title("Bitcoin Frogs")
+    
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     #st.sidebar.title("Bitcoin Frogs")
-    st.sidebar.title("Filters")
+    st.sidebar.title("Bitcoin Frogs Filters")
     
     # 属性选项
     backgrounds = ["Brown", "Red", "Olive", "Grey", "Pink", "Dark Blue", "Orange", "Blue", "Green", "Light Blue", "Bitcoin Orange", "Black", "Yellow"]
