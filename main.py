@@ -1,4 +1,3 @@
-from apscheduler.schedulers.background import BackgroundScheduler
 import streamlit as st
 from typing import List
 from dataclasses import dataclass
@@ -10,6 +9,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import time
 import random
+from apscheduler.schedulers.background import BackgroundScheduler
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
