@@ -1,5 +1,5 @@
 import streamlit as st
-import plotly.graph_objects
+import plotly.graph_objects as go
 import time
 from typing import List
 from dataclasses import dataclass
@@ -64,15 +64,15 @@ def create_historical_chart(json_file):
     selected_data = st.selectbox('选择要显示的数据', ['Floor Price', 'Owners', 'Total Listed', 'Total Volume'])
 
     # 根据选择的数据绘制线图
-    fig = plotly.graph_objects.Figure()
+    fig = go.Figure()
     if selected_data == 'Floor Price':
-        fig.add_trace(plotly.graph_objects.Scatter(x=df.index, y=df['floor_price'], mode='lines', name='Floor Price'))
+        fig.add_trace(go.Scatter(x=df.index, y=df['floor_price'], mode='lines', name='Floor Price'))
     elif selected_data == 'Owners':
-        fig.add_trace(plotly.graph_objects.Scatter(x=df.index, y=df['owners'], mode='lines', name='Owners'))
+        fig.add_trace(go.Scatter(x=df.index, y=df['owners'], mode='lines', name='Owners'))
     elif selected_data == 'Total Listed':
-        fig.add_trace(plotly.graph_objects.Scatter(x=df.index, y=df['total_listed'], mode='lines', name='Total Listed'))
+        fig.add_trace(go.Scatter(x=df.index, y=df['total_listed'], mode='lines', name='Total Listed'))
     elif selected_data == 'Total Volume':
-        fig.add_trace(plotly.graph_objects.Scatter(x=df.index, y=df['total_volume'], mode='lines', name='Total Volume'))
+        fig.add_trace(go.Scatter(x=df.index, y=df['total_volume'], mode='lines', name='Total Volume'))
 
     # 标记每个数据点的时间
     fig.update_layout(title='历史数据线图', xaxis_title='时间', yaxis_title=selected_data)
@@ -80,7 +80,7 @@ def create_historical_chart(json_file):
 
     # 绘制每小时成交量差异的条形图
     if selected_data == 'Total Volume':
-        fig.add_trace(plotly.graph_objects.Bar(x=df_hourly_diff.index, y=df_hourly_diff, name='Hourly Volume Diff'))
+        fig.add_trace(go.Bar(x=df_hourly_diff.index, y=df_hourly_diff, name='Hourly Volume Diff'))
 
     # 添加随机参数以强制刷新
     query_params = st.experimental_get_query_params()
