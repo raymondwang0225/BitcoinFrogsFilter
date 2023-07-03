@@ -1,29 +1,23 @@
-
 import streamlit as st
-import time
 from typing import List
 from dataclasses import dataclass
 from itertools import product
 import json;
 from PIL import Image
 import requests
-import random
-import pandas as pd
-
-
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
 headers = {'Authorization': 'Bearer ' + bearer_token}
 response = requests.get(url, headers=headers)
 json_data = json.loads(response.text)
-_floor_price = float(json_data['floorPrice'])*0.00000001
-_rounded_floor_price = round(_floor_price, 4)
-_owners = int(json_data["owners"])
-_totalListed =int(json_data["totalListed"])
-_totalVolume = float(json_data['totalVolume'])*0.00000001
-_rounded_totalVolume = round(_totalVolume, 4)
-_pending = int(json_data["pendingTransactions"])
+floor_price = float(json_data['floorPrice'])*0.00000001
+rounded_floor_price = round(floor_price, 4)
+owners = int(json_data["owners"])
+totalListed =int(json_data["totalListed"])
+totalVolume = float(json_data['totalVolume'])*0.00000001
+rounded_totalVolume = round(totalVolume, 4)
+pending = int(json_data["pendingTransactions"])
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
@@ -35,132 +29,18 @@ st.set_page_config(layout="wide")
 
 
 
-
-@st.cache(allow_output_mutation=True)
-def load_data(json_file):
-    # 读取 JSON 数据
-    with open(json_file, 'r') as file:
-        data = json.load(file)
-
-    # 转换为 Pandas DataFrame
-    df = pd.DataFrame(data)
-
-    # 将 timestamp 列转换为日期时间类型，并设置为索引
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-    df.set_index('timestamp', inplace=True)
-
-    return df
-
-def create_historical_chart(json_file):
-    df = load_data(json_file)
-
-    # 提取数据
-    timestamps = []
-    floor_prices = []
-    owners = []
-    total_listed = []
-    total_volumes = []
-
-    for entry in data:
-        timestamp = pd.to_datetime(entry['timestamp'])
-        floor_price = entry['floor_price']
-        owner = entry['owners']
-        total_listed = entry['total_listed']
-        total_volume = entry['total_volume']
-
-        timestamps.append(timestamp)
-        floor_prices.append(floor_price)
-        owners.append(owner)
-        total_listed.append(total_listed)
-        total_volumes.append(total_volume)
-
-    # 创建DataFrame
-    df = pd.DataFrame({
-        'Timestamp': timestamps,
-        'Floor Price': floor_prices,
-        'Owners': owners,
-        'Total Listed': total_listed,
-        'Total Volume': total_volumes
-    })
-
-    # 设置Timestamp列为索引，并按小时重采样
-    df.set_index('Timestamp', inplace=True)
-    df_hourly = df.resample('H').last().ffill()
-
-    # 计算每小时成交量差异
-    df_hourly['Hourly Volume Diff'] = df_hourly['Total Volume'].diff()
-
+def main():
     
-
-    tab1, tab2, tab3, tab4 ,tab5 = st.tabs(['Floor Price', 'Owners', 'Total Listed', 'Total Volume', 'Hourly Volume Diff'])
-    with tab1:
-        st.line_chart(df['Floor Price'])
-    with tab2:
-        st.line_chart(df['Floor Price'])
-    with tab3:
-        st.line_chart(df['Floor Price'])
-    with tab4:
-        st.line_chart(df_hourly['Total Volume'])
-    with tab5:
-        st.line_chart(df_hourly['Hourly Volume Diff'])
-   
-
-
-
-# 定义爬虫函数
-def crawl_floor_price():
-    # 在这里编写你的爬虫逻辑，从网站获取 floor price 数据
-    _response = requests.get(url, headers=headers)
-    print(_response.text)
-    json_data = json.loads(response.text)
-    fp = float(json_data['floorPrice'])*0.00000001
-    rounded_fp = round(fp, 4)
-    floor_price = rounded_fp
-    owners=int(json_data['owners'])
-    total_listed=int(json_data['totalListed'])
-    tv= float(json_data['totalVolume'])*0.00000001
-    total_volume = round(tv, 4)
-     
-    # 将获取的数据保存到 JSON 文件中
-    
-  # 执行爬虫获取 floor price 数据
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    data = {"timestamp": timestamp, "floor_price": floor_price, "owners": owners ,"total_listed": total_listed,"total_volume": total_volume}
-    
-    if not os.path.exists("History_data.json"):
-        with open("History_data.json", "w") as f:
-            json.dump([], f)
-    
-    # 读取之前的历史数据
-    with open("History_data.json", "r") as f:
-        history_data = json.load(f)
-    
-    # 将当前数据追加到历史数据列表中
-    history_data.append(data)
-    
-    # 写入更新后的历史数据
-    with open("History_data.json", "w") as f:
-        json.dump(history_data, f)
-
-
-
-    
-        
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
 
-    col1.metric("Floor Price", _rounded_floor_price,"N/A") 
-    col2.metric("Owners", _owners,"N/A") 
-    col3.metric("Total Listed", _totalListed,"N/A") 
-    col4.metric("Pending Transactions", _pending,"N/A") 
-    col5.metric("Total Volume", _rounded_totalVolume,"N/A") 
-    while True:
-        # 调用 create_historical_chart 函数
-        create_historical_chart('History_data.json')
-
-        # 暂停 5 分钟
-        time.sleep(300)
+    col1.metric("Floor Price", rounded_floor_price,"N/A") 
+    col2.metric("Owners", owners,"N/A") 
+    col3.metric("Total Listed", totalListed,"N/A") 
+    col4.metric("Pending Transactions", pending,"N/A") 
+    col5.metric("Total Volume", rounded_totalVolume,"N/A") 
+    
     st.markdown("<hr/>", unsafe_allow_html = True)
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
