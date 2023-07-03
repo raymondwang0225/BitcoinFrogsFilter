@@ -10,7 +10,7 @@ import requests
 
 import random
 import pandas as pd
-from plotly.tools import FigureFactory as FF
+
 from apscheduler.schedulers.background import BackgroundScheduler
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
@@ -91,24 +91,19 @@ def create_historical_chart(json_file):
     # 计算每小时成交量差异
     df_hourly['Hourly Volume Diff'] = df_hourly['Total Volume'].diff()
 
-    # 创建历史数据线图
-    fig_floor_price = ff.create_timeline(df, title='Floor Price')
-    fig_owners = ff.create_timeline(df, title='Owners')
-    fig_total_listed = ff.create_timeline(df, title='Total Listed')
-    fig_total_volume = ff.create_timeline(df_hourly, title='Total Volume')
-    fig_hourly_diff = ff.create_timeline(df_hourly, title='Hourly Volume Diff')
+    
 
     tab1, tab2, tab3, tab4 ,tab5 = st.tabs(['Floor Price', 'Owners', 'Total Listed', 'Total Volume', 'Hourly Volume Diff'])
     with tab1:
-        st.plotly_chart(fig_floor_price, theme="streamlit", use_container_width=True)
+        st.line_chart(df['Floor Price'])
     with tab2:
-        st.plotly_chart(fig_owners, theme="streamlit", use_container_width=True)
+        st.line_chart(df['Floor Price'])
     with tab3:
-        st.plotly_chart(fig_total_listed, theme="streamlit", use_container_width=True)
+        st.line_chart(df['Floor Price'])
     with tab4:
-        st.plotly_chart(fig_total_volume, theme="streamlit", use_container_width=True)
+        st.line_chart(df_hourly['Total Volume'])
     with tab5:
-        st.plotly_chart(fig_hourly_diff, theme="streamlit", use_container_width=True)
+        st.line_chart(df_hourly['Hourly Volume Diff'])
    
 
 
