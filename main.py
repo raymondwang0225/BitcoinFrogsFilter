@@ -7,6 +7,7 @@ from PIL import Image
 import requests
 import pandas as pd
 import numpy as np
+import csv
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
@@ -33,8 +34,13 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    df = pd.read_json('floor_price.json')
-    df.to_csv('Hourly_data.csv')
+    data = json.loads(floor_price.json)
+    headers = data[0].keys()
+
+    with open('Hourly_data.csv', 'w') as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(data)
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
