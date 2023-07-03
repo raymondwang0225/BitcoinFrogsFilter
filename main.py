@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 from typing import List
 from dataclasses import dataclass
 from itertools import product
@@ -6,7 +7,7 @@ import json;
 from PIL import Image
 import requests
 
-import time
+
 import random
 import pandas as pd
 import plotly.graph_objects as go
