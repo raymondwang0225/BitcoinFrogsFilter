@@ -1,3 +1,4 @@
+from apscheduler.schedulers.background import BackgroundScheduler
 import streamlit as st
 from typing import List
 from dataclasses import dataclass
@@ -5,19 +6,23 @@ from itertools import product
 import json;
 from PIL import Image
 import requests
+import pandas as pd
+import plotly.graph_objects as go
+import time
+import random
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
 headers = {'Authorization': 'Bearer ' + bearer_token}
 response = requests.get(url, headers=headers)
 json_data = json.loads(response.text)
-floor_price = float(json_data['floorPrice'])*0.00000001
-rounded_floor_price = round(floor_price, 4)
-owners = int(json_data["owners"])
-totalListed =int(json_data["totalListed"])
-totalVolume = float(json_data['totalVolume'])*0.00000001
-rounded_totalVolume = round(totalVolume, 4)
-pending = int(json_data["pendingTransactions"])
+_floor_price = float(json_data['floorPrice'])*0.00000001
+_rounded_floor_price = round(_floor_price, 4)
+_owners = int(json_data["owners"])
+_totalListed =int(json_data["totalListed"])
+_totalVolume = float(json_data['totalVolume'])*0.00000001
+_rounded_totalVolume = round(_totalVolume, 4)
+_pending = int(json_data["pendingTransactions"])
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
@@ -29,18 +34,142 @@ st.set_page_config(layout="wide")
 
 
 
-def main():
+
+@st.cache(allow_output_mutation=True)
+def load_data(json_file):
+    # 读取 JSON 数据
+    with open(json_file, 'r') as file:
+        data = json.load(file)
+
+    # 转换为 Pandas DataFrame
+    df = pd.DataFrame(data)
+
+    # 将 timestamp 列转换为日期时间类型，并设置为索引
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df.set_index('timestamp', inplace=True)
+
+    return df
+
+def create_historical_chart(json_file):
+    df = load_data(json_file)
+
+    # 计算每小时成交量差异
+    df_hourly_diff = df['total_volume'].resample('H').diff()
+
+    # Streamlit 页面标题和下拉选项
+    st.title('历史数据线图')
+    selected_data = st.selectbox('选择要显示的数据', ['Floor Price', 'Owners', 'Total Listed', 'Total Volume'])
+
+    # 根据选择的数据绘制线图
+    fig = go.Figure()
+    if selected_data == 'Floor Price':
+        fig.add_trace(go.Scatter(x=df.index, y=df['floor_price'], mode='lines', name='Floor Price'))
+    elif selected_data == 'Owners':
+        fig.add_trace(go.Scatter(x=df.index, y=df['owners'], mode='lines', name='Owners'))
+    elif selected_data == 'Total Listed':
+        fig.add_trace(go.Scatter(x=df.index, y=df['total_listed'], mode='lines', name='Total Listed'))
+    elif selected_data == 'Total Volume':
+        fig.add_trace(go.Scatter(x=df.index, y=df['total_volume'], mode='lines', name='Total Volume'))
+
+    # 标记每个数据点的时间
+    fig.update_layout(title='历史数据线图', xaxis_title='时间', yaxis_title=selected_data)
+    fig.update_traces(hovertemplate='时间: %{x}<br>数值: %{y}')
+
+    # 绘制每小时成交量差异的条形图
+    if selected_data == 'Total Volume':
+        fig.add_trace(go.Bar(x=df_hourly_diff.index, y=df_hourly_diff, name='Hourly Volume Diff'))
+
+    # 添加随机参数以强制刷新
+    query_params = st.experimental_get_query_params()
+    query_params['refresh'] = str(random.randint(1, 100000))
+    st.experimental_set_query_params(**query_params)
+
+    # 显示图表
+    st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+# 定义爬虫函数
+def crawl_floor_price():
+    # 在这里编写你的爬虫逻辑，从网站获取 floor price 数据
+    _response = requests.get(url, headers=headers)
+    print(_response.text)
+    json_data = json.loads(response.text)
+    fp = float(json_data['floorPrice'])*0.00000001
+    rounded_fp = round(fp, 4)
+    floor_price = rounded_fp
+    owners=int(json_data['owners'])
+    total_listed=int(json_data['totalListed'])
+    tv= float(json_data['totalVolume'])*0.00000001
+    total_volume = round(tv, 4)
+     
+    # 将获取的数据保存到 JSON 文件中
     
+  # 执行爬虫获取 floor price 数据
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data = {"timestamp": timestamp, "floor_price": floor_price, "owners": owners ,"total_listed": total_listed,"total_volume": total_volume}
+    
+    if not os.path.exists("History_data.json"):
+        with open("History_data.json", "w") as f:
+            json.dump([], f)
+    
+    # 读取之前的历史数据
+    with open("History_data.json", "r") as f:
+        history_data = json.load(f)
+    
+    # 将当前数据追加到历史数据列表中
+    history_data.append(data)
+    
+    # 写入更新后的历史数据
+    with open("History_data.json", "w") as f:
+        json.dump(history_data, f)
+
+
+# 定义每天的执行时间
+schedule_time = "00:00"
+
+# 创建后台调度器
+scheduler = BackgroundScheduler()
+
+# 添加定时任务
+#scheduler.add_job(crawl_floor_price, "cron", hour=schedule_time.split(':')[0], minute=schedule_time.split(':')[1])
+# 添加定时任务
+start_date = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+scheduler.add_job(crawl_floor_price, "interval", minutes=1, start_date=start_date)
+
+# 启动调度器
+scheduler.start()
+
+
+
+
+def main():    
+    try:
+        # 保持主线程运行
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        # 当接收到中断信号时，关闭调度器
+        scheduler.shutdown()
+
+    
+        
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
 
-    col1.metric("Floor Price", rounded_floor_price,"N/A") 
-    col2.metric("Owners", owners,"N/A") 
-    col3.metric("Total Listed", totalListed,"N/A") 
-    col4.metric("Pending Transactions", pending,"N/A") 
-    col5.metric("Total Volume", rounded_totalVolume,"N/A") 
-    
+    col1.metric("Floor Price", _rounded_floor_price,"N/A") 
+    col2.metric("Owners", _owners,"N/A") 
+    col3.metric("Total Listed", _totalListed,"N/A") 
+    col4.metric("Pending Transactions", _pending,"N/A") 
+    col5.metric("Total Volume", _rounded_totalVolume,"N/A") 
+    while True:
+        # 调用 create_historical_chart 函数
+        create_historical_chart('History_data.json')
+
+        # 暂停 5 分钟
+        time.sleep(300)
     st.markdown("<hr/>", unsafe_allow_html = True)
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
