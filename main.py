@@ -10,7 +10,7 @@ import requests
 
 import random
 import pandas as pd
-import plotly.figure_factory as ff
+from plotly.tools import FigureFactory as FF
 from apscheduler.schedulers.background import BackgroundScheduler
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
