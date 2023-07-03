@@ -5,10 +5,11 @@ from itertools import product
 import json;
 from PIL import Image
 import requests
-import pandas as pd
-import plotly.graph_objects as go
+
 import time
 import random
+import pandas as pd
+import plotly.graph_objects as go
 from apscheduler.schedulers.background import BackgroundScheduler
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
