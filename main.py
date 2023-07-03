@@ -54,7 +54,7 @@ def main():
     with tab2:
         st.line_chart(fpcsv[["timestamp", "owners"]], x = 'timestamp')
     with tab3:
-        st.line_chart(fpcsv[["timestamp", ",total_listed"]], x = 'timestamp')
+        st.line_chart(fpcsv[["timestamp", "total_listed"]], x = 'timestamp')
     with tab4:
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
     
