@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly.graph_objects as go
 import time
 from typing import List
 from dataclasses import dataclass
@@ -10,8 +9,8 @@ import requests
 
 
 import random
-
 import pandas as pd
+import plotly.figure_factory as ff
 from apscheduler.schedulers.background import BackgroundScheduler
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
@@ -56,40 +55,61 @@ def load_data(json_file):
 def create_historical_chart(json_file):
     df = load_data(json_file)
 
+    # 提取数据
+    timestamps = []
+    floor_prices = []
+    owners = []
+    total_listed = []
+    total_volumes = []
+
+    for entry in data:
+        timestamp = pd.to_datetime(entry['timestamp'])
+        floor_price = entry['floor_price']
+        owner = entry['owners']
+        total_listed = entry['total_listed']
+        total_volume = entry['total_volume']
+
+        timestamps.append(timestamp)
+        floor_prices.append(floor_price)
+        owners.append(owner)
+        total_listed.append(total_listed)
+        total_volumes.append(total_volume)
+
+    # 创建DataFrame
+    df = pd.DataFrame({
+        'Timestamp': timestamps,
+        'Floor Price': floor_prices,
+        'Owners': owners,
+        'Total Listed': total_listed,
+        'Total Volume': total_volumes
+    })
+
+    # 设置Timestamp列为索引，并按小时重采样
+    df.set_index('Timestamp', inplace=True)
+    df_hourly = df.resample('H').last().ffill()
+
     # 计算每小时成交量差异
-    df_hourly_diff = df['total_volume'].resample('H').diff()
+    df_hourly['Hourly Volume Diff'] = df_hourly['Total Volume'].diff()
 
-    # Streamlit 页面标题和下拉选项
-    st.title('历史数据线图')
-    selected_data = st.selectbox('选择要显示的数据', ['Floor Price', 'Owners', 'Total Listed', 'Total Volume'])
+    # 创建历史数据线图
+    fig_floor_price = ff.create_timeline(df, title='Floor Price')
+    fig_owners = ff.create_timeline(df, title='Owners')
+    fig_total_listed = ff.create_timeline(df, title='Total Listed')
+    fig_total_volume = ff.create_timeline(df_hourly, title='Total Volume')
+    fig_hourly_diff = ff.create_timeline(df_hourly, title='Hourly Volume Diff')
 
-    # 根据选择的数据绘制线图
-    fig = go.Figure()
-    if selected_data == 'Floor Price':
-        fig.add_trace(go.Scatter(x=df.index, y=df['floor_price'], mode='lines', name='Floor Price'))
-    elif selected_data == 'Owners':
-        fig.add_trace(go.Scatter(x=df.index, y=df['owners'], mode='lines', name='Owners'))
-    elif selected_data == 'Total Listed':
-        fig.add_trace(go.Scatter(x=df.index, y=df['total_listed'], mode='lines', name='Total Listed'))
-    elif selected_data == 'Total Volume':
-        fig.add_trace(go.Scatter(x=df.index, y=df['total_volume'], mode='lines', name='Total Volume'))
-
-    # 标记每个数据点的时间
-    fig.update_layout(title='历史数据线图', xaxis_title='时间', yaxis_title=selected_data)
-    fig.update_traces(hovertemplate='时间: %{x}<br>数值: %{y}')
-
-    # 绘制每小时成交量差异的条形图
-    if selected_data == 'Total Volume':
-        fig.add_trace(go.Bar(x=df_hourly_diff.index, y=df_hourly_diff, name='Hourly Volume Diff'))
-
-    # 添加随机参数以强制刷新
-    query_params = st.experimental_get_query_params()
-    query_params['refresh'] = str(random.randint(1, 100000))
-    st.experimental_set_query_params(**query_params)
-
-    # 显示图表
-    st.plotly_chart(fig, use_container_width=True)
-
+    tab1, tab2, tab3, tab4 ,tab5 = st.tabs(['Floor Price', 'Owners', 'Total Listed', 'Total Volume', 'Hourly Volume Diff'])
+    with tab1:
+        st.plotly_chart(fig_floor_price, theme="streamlit", use_container_width=True)
+    with tab2:
+        st.plotly_chart(fig_owners, theme="streamlit", use_container_width=True)
+    with tab3:
+        st.plotly_chart(fig_total_listed, theme="streamlit", use_container_width=True)
+    with tab4:
+        st.plotly_chart(fig_total_volume, theme="streamlit", use_container_width=True)
+    with tab5:
+        st.plotly_chart(fig_hourly_diff, theme="streamlit", use_container_width=True)
+   
 
 
 
