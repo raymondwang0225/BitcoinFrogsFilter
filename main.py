@@ -48,7 +48,7 @@ def main():
     st.markdown("<hr/>", unsafe_allow_html = True)
 
     
-    fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsFilter/main/floor_price.csv", parse_dates=['timestamp'])
+    fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
     
     
     tab1, tab2, tab3, tab4 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume"])
