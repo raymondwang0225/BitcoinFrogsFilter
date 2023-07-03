@@ -29,6 +29,11 @@ filtered_frogs = []
 # 设置页面的宽度
 st.set_page_config(layout="wide")
 
+# 调用函数并传递输入和输出文件的路径
+input_file = "floor_price.csv"
+output_file = "Hourly_data.csv"
+save_hourly_data(input_file, output_file)
+
 def save_hourly_data(csv_file, output_file):
     # 读取CSV文件
     df = pd.read_csv(csv_file)
@@ -61,10 +66,7 @@ def main():
     
     st.markdown("<hr/>", unsafe_allow_html = True)
 
-    # 调用函数并传递输入和输出文件的路径
-    input_file = "floor_price.csv"
-    output_file = "Hourly_data.csv"
-    save_hourly_data(input_file, output_file)
+    
     fpcsv = pd.read_csv("Hourly_data.csv", parse_dates=['timestamp'])
     
     
