@@ -34,15 +34,7 @@ st.set_page_config(layout="wide")
 
 
 def main():
-     # 读取之前的历史数据
-    with open("floor_price.json", "r") as f:
-        data = json.load(f)
-    headers = data[0].keys()
-
-    with open('Hourly_data.csv', 'w') as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
-        writer.writeheader()
-        writer.writerows(data)
+    
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
