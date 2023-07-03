@@ -31,9 +31,12 @@ st.set_page_config(layout="wide")
 
 
 
-def save_hourly_data(csv_file, output_file):
+
+
+def main():
+    
     # 读取CSV文件
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv("floor_price.csv")
 
     # 将"timestamp"列解析为日期时间类型
     df['timestamp'] = pd.to_datetime(df['timestamp'])
@@ -44,16 +47,11 @@ def save_hourly_data(csv_file, output_file):
     # 按小时重采样并取每小时最后一个时间点的数据
     df_hourly = df.resample('H').last()
 
-    # 将数据保存到新的CSV文件
-    df_hourly.to_csv(output_file)
+    file = open('Hourly_data.csv',mode='w', newline='')
+    writer = csv.writer(df_hourly)
+    file.close()
 
-    print(f"Hourly data saved to {output_file}.")
-
-def main():
-    # 调用函数并传递输入和输出文件的路径
-    input_file = "floor_price.csv"
-    output_file = "Hourly_data.csv"
-    save_hourly_data(input_file, output_file)
+   
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
