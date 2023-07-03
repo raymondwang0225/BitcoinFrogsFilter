@@ -1,3 +1,4 @@
+from apscheduler.schedulers.background import BackgroundScheduler
 import streamlit as st
 import time
 from typing import List
@@ -6,12 +7,10 @@ from itertools import product
 import json;
 from PIL import Image
 import requests
-
-
 import random
 import pandas as pd
 
-from apscheduler.schedulers.background import BackgroundScheduler
+
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
