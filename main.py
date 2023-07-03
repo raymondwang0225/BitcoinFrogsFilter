@@ -46,7 +46,16 @@ def main():
     st.markdown("<hr/>", unsafe_allow_html = True)
 
     fpcsv = pd.read_csv('floor_price.csv', parse_dates=['timestamp'])
-    st.line_chart(fpcsv[["timestamp", "floor_price"]], x = 'timestamp')
+    tab1, tab2, tab3, tab4 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume"])
+    with tab1:
+        st.line_chart(fpcsv[["timestamp", "floor_price"]], x = 'timestamp')
+    with tab2:
+        st.line_chart(fpcsv[["timestamp", "owners"]], x = 'timestamp')
+    with tab3:
+        st.line_chart(fpcsv[["timestamp", ",total_listed"]], x = 'timestamp')
+    with tab4:
+        st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
+    
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     #st.sidebar.title("Bitcoin Frogs")
