@@ -48,7 +48,7 @@ def main():
     st.markdown("<hr/>", unsafe_allow_html = True)
 
     
-    fpcsv = pd.read_csv("Hourly_data.csv", parse_dates=['timestamp'])
+    fpcsv = pd.read_csv("floor_price.csv", parse_dates=['timestamp'])
     
     
     tab1, tab2, tab3, tab4 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume"])
