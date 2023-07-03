@@ -29,34 +29,12 @@ filtered_frogs = []
 # 设置页面的宽度
 st.set_page_config(layout="wide")
 
-def get_hourly_data(csv_file):
-    # 读取CSV文件
-    df = pd.read_csv(csv_file)
 
-    # 将"timestamp"列解析为日期时间类型
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-
-    # 设置"timestamp"列为索引列
-    df.set_index('timestamp', inplace=True)
-
-    # 按小时重采样并取每小时最后一个时间点的数据
-    df_hourly = df.resample('H').last()
-
-    return df_hourly
 
 
 
 def main():
     
-    # 读取History_data.csv文件并获取每小时数据
-    input_file = "floor_price.csv"
-    df_hourly = get_hourly_data(input_file)
-    
-    # 将数据保存为另一个CSV文件
-    output_file = "Hourly_data.csv"
-    df_hourly.to_csv(output_file)
-
-   
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
