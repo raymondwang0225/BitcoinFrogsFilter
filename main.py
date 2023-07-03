@@ -30,51 +30,10 @@ filtered_frogs = []
 st.set_page_config(layout="wide")
 
 
-# CSV文件路径和列名
-csv_file = 'Hourly_data.csv'
-fieldnames = ['timestamp', 'floor_price', 'owners', 'total_listed', 'total_volume']
-
-def fetch_data():
-    url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
-    bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
-    headers = {'Authorization': 'Bearer ' + bearer_token}
-    response = requests.get(url, headers=headers)
-    json_data = json.loads(response.text)
-    floor_price = float(json_data['floorPrice'])*0.00000001
-    rounded_floor_price = round(floor_price, 4)
-    owners = int(json_data["owners"])
-    totalListed =int(json_data["totalListed"])
-    totalVolume = float(json_data['totalVolume'])*0.00000001
-    rounded_totalVolume = round(totalVolume, 4)
-
-    data ={"floor_price": rounded_floor_price, "owners": owners, "total_listed": totalListed, "total_volume": rounded_totalVolume}
-    return json_data
-
-def write_to_csv(data):
-    # 将数据写入CSV文件
-    with open(csv_file, 'a', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writerow(data)
-
-def scrape_data():
-    while True:
-        # 获取当前时间戳
-        current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        
-        # 抓取数据
-        data = fetch_data()
-        data['timestamp'] = current_time
-
-        # 写入CSV文件
-        write_to_csv(data)
-
-        # 暂停一分钟
-        time.sleep(60)
 
 
 def main():
-    # 执行爬虫
-    scrape_data()
+    
     #st.markdown("<hr/>", unsafe_allow_html = True)
     #st.write("Floor Price : ",rounded_floor_price," Owners : ",owners," Total Listed : ",totalListed," Total Volume : ",rounded_totalVolume)
     col1, col2, col3 ,col4 ,col5 = st.columns(5)
