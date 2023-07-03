@@ -1,4 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+
 import streamlit as st
 import time
 from typing import List
@@ -143,32 +143,6 @@ def crawl_floor_price():
         json.dump(history_data, f)
 
 
-# 定义每天的执行时间
-schedule_time = "00:00"
-
-# 创建后台调度器
-scheduler = BackgroundScheduler()
-
-# 添加定时任务
-#scheduler.add_job(crawl_floor_price, "cron", hour=schedule_time.split(':')[0], minute=schedule_time.split(':')[1])
-# 添加定时任务
-start_date = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-scheduler.add_job(crawl_floor_price, "interval", minutes=1, start_date=start_date)
-
-# 启动调度器
-scheduler.start()
-
-
-
-
-def main():    
-    try:
-        # 保持主线程运行
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        # 当接收到中断信号时，关闭调度器
-        scheduler.shutdown()
 
     
         
