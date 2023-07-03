@@ -5,6 +5,8 @@ from itertools import product
 import json;
 from PIL import Image
 import requests
+import pandas as pd
+import numpy as np
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
@@ -42,6 +44,9 @@ def main():
     col5.metric("Total Volume", rounded_totalVolume,"N/A") 
     
     st.markdown("<hr/>", unsafe_allow_html = True)
+
+    
+   
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
     #st.sidebar.title("Bitcoin Frogs")
