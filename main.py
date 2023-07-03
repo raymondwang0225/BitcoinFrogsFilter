@@ -34,7 +34,9 @@ st.set_page_config(layout="wide")
 
 
 def main():
-    data = json.loads(floor_price.json)
+     # 读取之前的历史数据
+    with open("floor_price.json", "r") as f:
+        data = json.load(f)
     headers = data[0].keys()
 
     with open('Hourly_data.csv', 'w') as f:
