@@ -55,7 +55,7 @@ def main():
    
     # 存儲每個 CSV 文件的總量和價格區間
     data = {
-        'Price Range': ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above']
+        'Price Range': ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above'],
         'Total': [63, 173, 96, 79, 371]
     }
 
