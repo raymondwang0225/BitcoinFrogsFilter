@@ -50,13 +50,24 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
-   
+
+    total_len =[]
     
+    # 遍歷每個 CSV 文件
+    for i in range(1, 6):
+        csv_file_name = f"https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_{i:02d}.csv"
+    
+        # 讀取 CSV 文件
+        df = pd.read_csv(csv_file_name)
+    
+        # 計算總量並存儲到 data 字典中
+        total = len(df)
+        total_len.append(total)
    
     # 存儲每個 CSV 文件的總量和價格區間
     data = {
-        'Price Range': ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above'],
-        'Total': [63, 173, 96, 79, 371]
+        'Price Range': ['<0.05', '0.05 - 0.1', '0.1 - 0.15', '0.15 -o 0.2', '0.2 <'],
+        'Total': [total_len[0], total_len[1], total_len[2], total_len[3], total_len[4]]
     }
 
     
