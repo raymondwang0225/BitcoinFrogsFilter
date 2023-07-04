@@ -1,5 +1,6 @@
 import streamlit as st
 from typing import List
+import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from itertools import product
 import json;
@@ -8,7 +9,7 @@ import requests
 import pandas as pd
 import numpy as np
 import csv
-import matplotlib.pyplot as plt
+
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
