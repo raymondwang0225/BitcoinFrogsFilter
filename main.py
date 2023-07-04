@@ -50,14 +50,7 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
-    # 定义 CSV 文件列表
-    csv_files = [
-        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_01.csv',
-        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_02.csv',
-        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_03.csv',
-        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_04.csv',
-        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_05.csv',
-    ]
+   
 
     # 存儲每個 CSV 文件的總量和價格區間
     data = {
@@ -66,7 +59,7 @@ def main():
 
     # 遍歷每個 CSV 文件
     for i in range(1, 6):
-        csv_file_name = f"level_{i:02d}.csv"
+        csv_file_name = f"https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_{i:02d}.csv"
     
         # 讀取 CSV 文件
         df = pd.read_csv(csv_file_name)
