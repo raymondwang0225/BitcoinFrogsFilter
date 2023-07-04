@@ -1,6 +1,5 @@
 import streamlit as st
 from typing import List
-import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from itertools import product
 import json;
@@ -60,34 +59,28 @@ def main():
         'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_05.csv',
     ]
 
-    # 定义价格区间
-    price_ranges = ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above']
+    # 存儲每個 CSV 文件的總量和價格區間
+    data = {
+        'Price Range': ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above']
+    }
 
-    # 创建一个空的字典来存储数据透视表结果
-    pivot_tables = {}
-
-    # 计算每个 CSV 文件的总量
-    for file in csv_files:
-        df = pd.read_csv(file)
-        pivot_table = pd.pivot_table(df, values='Total', index='Price Range', aggfunc='sum')
-        pivot_table = pivot_table.reindex(price_ranges)  # 重新索引以匹配价格区间
-        pivot_tables[file] = pivot_table
-
-    # 创建一个图形对象
-    fig, ax = plt.subplots()
-
-    # 绘制每个 CSV 文件的条形图
-    for file, pivot_table in pivot_tables.items():
-        ax.bar(pivot_table.index, pivot_table['Total'], label=file)
-
-    # 设置图形标题和轴标签
-    ax.set_title('Total Quantity by Price Range')
-    ax.set_xlabel('Price Range')
-    ax.set_ylabel('Total Quantity')
-
-    # 添加图例
-    ax.legend()
-
+    # 遍歷每個 CSV 文件
+    for i in range(1, 6):
+        csv_file_name = f"level_{i:02d}.csv"
+    
+        # 讀取 CSV 文件
+        df = pd.read_csv(csv_file_name)
+    
+        # 計算總量並存儲到 data 字典中
+        total = len(df)
+        data[f'Level {i}'] = [total]
+    
+    # 創建資料框
+    chart_data = pd.DataFrame(data)
+    
+    # 將 'Price Range' 設定為索引欄位
+    chart_data.set_index('Price Range', inplace=True)
+    
     
 
     
@@ -102,8 +95,8 @@ def main():
     with tab4:
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
     with tab5:
-        # 显示图形
-        st.pyplot(fig)
+        # 使用 st.bar_chart 顯示圖表
+        st.bar_chart(chart_data)
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
