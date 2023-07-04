@@ -8,6 +8,7 @@ import requests
 import pandas as pd
 import numpy as np
 import csv
+import matplotlib.pyplot as plt
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
 bearer_token = '35d17fa0-06be-434f-8357-9d17dd537d13'
@@ -49,9 +50,48 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
+    # 定义 CSV 文件列表
+    csv_files = [
+        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_01.csv',
+        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_02.csv',
+        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_03.csv',
+        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_04.csv',
+        'https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/level_05.csv',
+    ]
+
+    # 定义价格区间
+    price_ranges = ['0.05 and below', '0.05 to 0.1', '0.1 to 0.15', '0.15 to 0.2', '0.2 and above']
+
+    # 创建一个空的字典来存储数据透视表结果
+    pivot_tables = {}
+
+    # 计算每个 CSV 文件的总量
+    for file in csv_files:
+        df = pd.read_csv(file)
+        pivot_table = pd.pivot_table(df, values='Total', index='Price Range', aggfunc='sum')
+        pivot_table = pivot_table.reindex(price_ranges)  # 重新索引以匹配价格区间
+        pivot_tables[file] = pivot_table
+
+    # 创建一个图形对象
+    fig, ax = plt.subplots()
+
+    # 绘制每个 CSV 文件的条形图
+    for file, pivot_table in pivot_tables.items():
+        ax.bar(pivot_table.index, pivot_table['Total'], label=file)
+
+    # 设置图形标题和轴标签
+    ax.set_title('Total Quantity by Price Range')
+    ax.set_xlabel('Price Range')
+    ax.set_ylabel('Total Quantity')
+
+    # 添加图例
+    ax.legend()
+
+    
+
     
     
-    tab1, tab2, tab3, tab4 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","List Price Level"])
     with tab1:
         st.line_chart(fpcsv[["timestamp", "floor_price"]], x = 'timestamp')
     with tab2:
@@ -60,6 +100,9 @@ def main():
         st.line_chart(fpcsv[["timestamp", "total_listed"]], x = 'timestamp')
     with tab4:
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
+    with tab5:
+        # 显示图形
+        st.pyplot(fig)
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
