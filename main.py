@@ -8,7 +8,7 @@ import requests
 import pandas as pd
 import numpy as np
 import csv
-from vega_datasets import data
+
 
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
