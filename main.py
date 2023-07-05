@@ -103,7 +103,7 @@ def main():
         st.markdown('### Donut chart')
         plost.donut_chart(
             data=stocks,
-            theta=donut_theta,
+            theta='q2',
             color='company',
             legend='bottom', 
             use_container_width=True)
