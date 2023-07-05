@@ -23,10 +23,10 @@ totalListed =int(json_data["totalListed"])
 totalVolume = float(json_data['totalVolume'])*0.00000001
 rounded_totalVolume = round(totalVolume, 4)
 pending = int(json_data["pendingTransactions"])
-data=[]
+
 
 with open('bitcoin_frogs_items.json') as f:
-    data = json.load(f)
+    frog_data = json.load(f)
 
 filtered_frogs = []
 
@@ -134,7 +134,7 @@ def main():
     if apply_filter:
         
         # 根据条件过滤人物
-        filtered_frogs = [frog for frog in data if
+        filtered_frogs = [frog for frog in frog_data if
                            (not desired_backgrounds or frog["background"]  in desired_backgrounds) and
                            (not desired_bodies or frog["body"] in desired_bodies) and
                            (not desired_clothing or frog["clothing"] in desired_clothing) and  
