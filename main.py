@@ -109,7 +109,7 @@ def main():
             data=level_data,
             theta='amount',
             color='range',
-            legend='right', 
+            legend='left', 
             use_container_width=True)
     
     
