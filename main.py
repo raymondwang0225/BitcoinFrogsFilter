@@ -23,6 +23,7 @@ totalListed =int(json_data["totalListed"])
 totalVolume = float(json_data['totalVolume'])*0.00000001
 rounded_totalVolume = round(totalVolume, 4)
 pending = int(json_data["pendingTransactions"])
+data=[]
 
 with open('bitcoin_frogs_items.json') as f:
     data = json.load(f)
