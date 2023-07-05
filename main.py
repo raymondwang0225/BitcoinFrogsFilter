@@ -90,7 +90,7 @@ def main():
 
     
     
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview"])
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
     with tab1:
         st.markdown('### Floor Price')
         st.line_chart(fpcsv[["timestamp", "floor_price"]],x='timestamp')
@@ -123,6 +123,14 @@ def main():
         st.write("Buy and Sell at OrdSwap  [https://ordswap.io/collections/bitcoin-frogs](https://ordswap.io/collections/bitcoin-frogs) ")
         st.write("Buy and Sell at Ordynals  [https://gamma.io/ordinals/collections/bitcoin-frogs](https://gamma.io/ordinals/collections/bitcoin-frogs) ")
         st.write("Buy and Sell at Gamma Marketplace  [https://ordynals.com/collection/bitcoin-frogs](https://ordynals.com/collection/bitcoin-frogs) ")
+    with tab7:
+        st.markdown('### Useful Links')
+        st.write("BRC-20 Marketplace  [https://unisat.io/market](https://unisat.io/market) ")
+        st.write("Track Sat Rarities  [ https://mempool.space/]( https://mempool.space/) ")
+        st.write("Track your transaction  [https://discord.gg/bitcoinfrogs](https://discord.gg/bitcoinfrogs) ")
+        st.write("Track the floor from all markets  [https://bestinslot.xyz/ordinals/collection/bitcoin-frogs](https://bestinslot.xyz/ordinals/collection/bitcoin-frogs) ")
+        st.write("Track the number of holders  [https://ordinalswallet.com/collection/bitcoin-frogs](https://ordinalswallet.com/collection/bitcoin-frogs) ")
+        st.write("Get a Wallet to store your Ordinals  [https://twitter.com/xverseApp](https://twitter.com/xverseApp) ")
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
