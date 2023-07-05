@@ -90,17 +90,21 @@ def main():
 
     
     
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","List Price Level"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition"])
     with tab1:
-        st.line_chart(fpcsv[["timestamp", "floor_price"]], x = 'timestamp')
+        st.markdown('### Floor Price')
+        st.line_chart(fpcsv[["timestamp", "floor_price"]])
     with tab2:
-        st.line_chart(fpcsv[["timestamp", "owners"]], x = 'timestamp')
+        st.markdown('### Owners')
+        st.line_chart(fpcsv[["timestamp", "owners"]])
     with tab3:
-        st.line_chart(fpcsv[["timestamp", "total_listed"]], x = 'timestamp')
+        st.markdown('### Total Listed')
+        st.line_chart(fpcsv[["timestamp", "total_listed"]])
     with tab4:
-        st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
+        st.markdown('### Total Volume')
+        st.line_chart(fpcsv[["timestamp", "total_volume"]])
     with tab5:
-        st.markdown('### Donut chart')
+        st.markdown('### Listed Price Composition')
         plost.donut_chart(
             data=level_data,
             theta='amount',
