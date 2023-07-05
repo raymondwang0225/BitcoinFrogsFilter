@@ -58,7 +58,7 @@ def main():
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
     #level_data = load_level_data(10)
     level_data=pd.read_csv('level_data.csv')
-    stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
+    
     
     total_len =[]
     
@@ -102,9 +102,9 @@ def main():
     with tab5:
         st.markdown('### Donut chart')
         plost.donut_chart(
-            data=stocks,
-            theta='q2',
-            color='company',
+            data=level_data,
+            theta='amount',
+            color='range',
             legend='bottom', 
             use_container_width=True)
     
