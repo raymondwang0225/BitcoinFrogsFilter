@@ -34,7 +34,10 @@ filtered_frogs = []
 st.set_page_config(layout="wide")
 
 
-
+@st.cache
+def load_level_data(nrows):
+    data = pd.read_csv('level_data.csv',nrows=nrows)
+    return data
 
 def main():
     
@@ -52,7 +55,8 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
-
+    load_level_data = load_level_data(1000)
+    
     total_len =[]
     
     # 遍歷每個 CSV 文件
