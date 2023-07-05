@@ -102,7 +102,7 @@ def main():
         # 使用 st.bar_chart 顯示圖表
         #st.bar_chart(level_data)
         plost.donut_chart(
-        data=level_data,
+        data=level_data['range'],
         theta='listed amount',
         color='range',
         legend='bottom', 
