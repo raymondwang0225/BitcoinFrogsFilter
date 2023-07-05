@@ -55,8 +55,8 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
-    #level_data = load_level_data(10)
-    level_data=pd.read_csv('level_data.csv')
+    level_data = load_level_data(1)
+    #level_data=pd.read_csv('level_data.csv')
     
     total_len =[]
     
@@ -99,7 +99,7 @@ def main():
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
     with tab5:
         # 使用 st.bar_chart 顯示圖表
-        st.bar_chart(level_data)
+        st.bar_chart(level_data["range"])
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
