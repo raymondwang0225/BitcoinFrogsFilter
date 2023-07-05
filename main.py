@@ -90,7 +90,7 @@ def main():
 
     
     
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition"],"Links Overview"])
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview"])
     with tab1:
         st.markdown('### Floor Price')
         st.line_chart(fpcsv[["timestamp", "floor_price"]],x='timestamp')
@@ -113,7 +113,7 @@ def main():
             use_container_width=True)
     with tab6:
         st.markdown('### Links Overview')
-        st.write("[Click here](https://www.example.com) to visit Example website.")
+        st.write("Website:[https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
