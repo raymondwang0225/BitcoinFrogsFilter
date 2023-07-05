@@ -99,7 +99,7 @@ def main():
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
     with tab5:
         # 使用 st.bar_chart 顯示圖表
-        st.bar_chart(level_data,y=level_data["range"])
+        st.bar_chart(level_data,y="range")
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
