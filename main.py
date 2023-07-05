@@ -100,7 +100,13 @@ def main():
         st.line_chart(fpcsv[["timestamp", "total_volume"]], x = 'timestamp')
     with tab5:
         # 使用 st.bar_chart 顯示圖表
-        st.bar_chart(level_data)
+        #st.bar_chart(level_data)
+        plost.donut_chart(
+        data=level_data,
+        theta=donut_theta,
+        color='range',
+        legend='bottom', 
+        use_container_width=True)
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
