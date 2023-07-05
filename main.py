@@ -55,7 +55,8 @@ def main():
 
     
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
-    level_data = load_level_data(10)
+    #level_data = load_level_data(10)
+    level_data=pd.read_csv('level_data.csv')
     
     total_len =[]
     
