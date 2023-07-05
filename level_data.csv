@@ -1,2 +1,8 @@
-level1,level2,level3,level4,level5
-90,178,96,77,370
+amoumt,level,range
+90,level1,0-0.0499
+178,level2,0.05-0.0999
+96,level3,0.1-0.1499
+77,level4,0.15-0.1999
+370,level5,0.2+
+
+
