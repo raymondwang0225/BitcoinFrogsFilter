@@ -126,8 +126,8 @@ def main():
     with tab7:
         st.markdown('### Useful Links')
         st.write("BRC-20 Marketplace  [https://unisat.io/market](https://unisat.io/market) ")
-        st.write("Track Sat Rarities  [ https://mempool.space/]( https://mempool.space/) ")
-        st.write("Track your transaction  [https://discord.gg/bitcoinfrogs](https://discord.gg/bitcoinfrogs) ")
+        st.write("Track Sat Rarities  [https://www.ord.io/]( https://www.ord.io/) ")
+        st.write("Track your transaction  [https://mempool.space/]( https://mempool.space/) ")
         st.write("Track the floor from all markets  [https://bestinslot.xyz/ordinals/collection/bitcoin-frogs](https://bestinslot.xyz/ordinals/collection/bitcoin-frogs) ")
         st.write("Track the number of holders  [https://ordinalswallet.com/collection/bitcoin-frogs](https://ordinalswallet.com/collection/bitcoin-frogs) ")
         st.write("Get a Wallet to store your Ordinals  [https://twitter.com/xverseApp](https://twitter.com/xverseApp) ")
