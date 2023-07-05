@@ -113,7 +113,7 @@ def main():
             use_container_width=True)
     with tab6:
         st.markdown('### Links Overview')
-        st.write("Website:[https://bitcoinfrogs.com/](https://bitcoinfrogs.com/)")
+        st.write("[Click here](https://www.example.com) to visit Example website.")
     
     
     st.sidebar.image("https://cdn.discordapp.com/attachments/1117712065293987840/1124212987243278356/rpbp.png", use_column_width=True)
