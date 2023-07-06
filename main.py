@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import csv
 import plost
+import matplotlib.pyplot as plt
 
 
 
@@ -121,14 +122,20 @@ def main():
             use_container_width=True)
         st.table(level_data)
         # 示例数据
-        tdata = {
-            'Category A': 50,
-            'Category B': 30,
-            'Category C': 20
-        }
+        categories = ['Category A', 'Category B', 'Category C']
+        values = [50, 30, 20]
 
         # 创建横向条形图
-        st.bar_chart(tdata, orientation='horizontal')
+        fig, ax = plt.subplots()
+        y_pos = np.arange(len(categories))
+        ax.barh(y_pos, values)
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(categories)
+        ax.invert_yaxis()  # 反转y轴，使得条形图从上到下排序
+        ax.set_xlabel('Values')
+        
+        # 在Streamlit应用中显示图表
+        st.pyplot(fig)
     with tab6:
         st.markdown('### Links Overview')
         st.write("Website  [https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
