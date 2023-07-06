@@ -90,9 +90,9 @@ def main():
 
     
     
-    tab0,tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Top20 Whales","Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
+    tab0,tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Top15 Whales","Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
     with tab0:
-        st.markdown('### Top20 Whales')
+        st.markdown('### Top15 Whales')
         plost.donut_chart(
             data= whale_data,
             theta='amount',
