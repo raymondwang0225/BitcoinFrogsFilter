@@ -126,13 +126,13 @@ def main():
         url = 'https://raw.githubusercontent.com/raymondwang0225/CheckFrogWallet/main/wallet_distribution.csv'
         ddf = pd.read_csv(url)
 
+        # 转换数据为Altair的数据框
+        alt_data = alt.Data(values=df)
+        
         # 绘制条形图
-        chart = alt.Chart(ddf).mark_bar(color='#4BAAFF').encode(
+        chart = alt.Chart(alt_data).mark_bar(color='#4BAAFF').encode(
             x='OWNED',
             y='WALLETS'
-        ).properties(
-            width=500,
-            height=400
         )
         
         # 显示图表
