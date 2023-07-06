@@ -159,6 +159,11 @@ def main():
         ax.spines['bottom'].set_visible(False)
         ax.spines['left'].set_visible(False)
         ax.spines['right'].set_visible(False)
+
+        # 关闭分割线
+        ax.grid(False)
+
+
         
         # 设置刻度标签颜色
         ax.tick_params(axis='x', colors='#FAFAFA')
