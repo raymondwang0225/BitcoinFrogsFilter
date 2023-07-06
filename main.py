@@ -122,55 +122,22 @@ def main():
             use_container_width=True)
         st.table(level_data)
 
-      # 读取数据
-        url = 'https://drive.google.com/file/d/1V-T2u8kSqKItLViiDQCrAOKZsLgA_cqD/view?usp=sharing'
-        file_id = url.split('/')[-2]
-        dwn_url = 'https://drive.google.com/uc?id=' + file_id
-        df = pd.read_csv(dwn_url)
-        
-        # 筛选数据
-        date_filter = df['date'] == '2020-07-01'
-        filtered_df = df[date_filter]
-        top_10_df = filtered_df.nlargest(10, 'dollar_price')
+     # 读取数据
+        url = 'https://raw.githubusercontent.com/raymondwang0225/CheckFrogWallet/main/wallet_distribution.csv'
+        ddf = pd.read_csv(url)
         
         # 设置图表样式
-        plt.style.use('seaborn-whitegrid')
+        st.set_option('deprecation.showPyplotGlobalUse', False)
         
-        # 创建图表
-        fig, ax = plt.subplots(figsize=(10, 6))
+        # 绘制折线图
+        st.line_chart(data=ddf['WALLETS'], use_container_width=True)
         
-        # 设置背景颜色
-        ax.set_facecolor('#0E1117')
+        # 设置折线图颜色
+        plt.gca().lines[0].set_color('#4BAAFF')
         
-        # 设置背景透明度
-        fig.patch.set_alpha(0.0)
-        
-        # 绘制条形图
-        bar_colors = ['#4BAAFF'] * len(top_10_df['name'])
-        ax.barh(top_10_df['name'], top_10_df['dollar_price'], color=bar_colors, height=0.6)
-        
-        # 设置文字颜色
-        ax.set_title('2020 Top 10 Big Mac Index', fontsize=18, color='#FAFAFA')
-        ax.set_xlabel('Dollar Price', fontsize=14, color='#FAFAFA')
-        ax.set_ylabel('Name', fontsize=14, color='#FAFAFA')
-        
-        # 移除上、下、左、右的边框
-        ax.spines['top'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-
-        # 关闭分割线
-        ax.grid(False)
-
-
-        
-        # 设置刻度标签颜色
-        ax.tick_params(axis='x', colors='#FAFAFA')
-        ax.tick_params(axis='y', colors='#FAFAFA')
-        
-        # 在Streamlit应用中显示图表
-        st.pyplot(fig)
+        # 设置X轴标签和Y轴标签
+        st.xlabel('OWNED')
+        st.ylabel('WALLETS')
 
     
     with tab6:
