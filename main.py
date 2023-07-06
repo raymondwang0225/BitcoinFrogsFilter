@@ -136,8 +136,14 @@ def main():
         # 设置图表样式
         plt.style.use('seaborn-whitegrid')
         
-        # 创建图表，并指定大小
-        fig, ax = plt.subplots(figsize=(6, 4))
+        # 创建图表
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        # 设置背景颜色
+        ax.set_facecolor('#0E1117')
+        
+        # 设置背景透明度
+        fig.patch.set_alpha(0.0)
         
         # 绘制条形图
         bar_colors = ['#4BAAFF'] * len(top_10_df['name'])
