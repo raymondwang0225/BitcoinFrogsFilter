@@ -93,11 +93,11 @@ def main():
     with tab0:
         st.markdown('### Top15 Whales')
         plost.donut_chart(
-            data= wallet_all_data,
+            data= whale_data,
             theta='amount',
             color='abridge',
             legend='bottom')
-        st.table(whale_data)
+        st.table(wallet_all_data)
     with tab1:
         st.markdown('### Floor Price')
         st.line_chart(fpcsv[["timestamp", "floor_price"]],x='timestamp')
