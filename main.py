@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import csv
 import plost
-from pyg2plot import Plot
+
 
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
