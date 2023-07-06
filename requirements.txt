@@ -1,5 +1,6 @@
 streamlit
 pandas
 plost
-pyg2plot
+numpy
+Pillow
 matplotlib
