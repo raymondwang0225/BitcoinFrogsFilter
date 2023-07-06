@@ -10,6 +10,7 @@ import numpy as np
 import csv
 import plost
 import matplotlib.pyplot as plt
+import altair as alt
 
 
 
@@ -127,7 +128,7 @@ def main():
         ddf = pd.read_csv(url)
 
         # 转换数据为Altair的数据框
-        alt_data = alt.Data(values=df)
+        alt_data = alt.Data(values=ddf)
         
         # 绘制条形图
         chart = alt.Chart(alt_data).mark_bar(color='#4BAAFF').encode(
