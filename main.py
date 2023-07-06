@@ -119,12 +119,6 @@ def main():
             color='range',
             legend='bottom', 
             use_container_width=True)
-        plost.donut_chart(
-            data= whale_data,
-            theta='amount',
-            color='abridge',
-            legend='bottom', 
-            use_container_width=True)
     with tab6:
         st.markdown('### Links Overview')
         st.write("Website  [https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
