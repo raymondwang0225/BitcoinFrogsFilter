@@ -121,21 +121,41 @@ def main():
             legend='bottom', 
             use_container_width=True)
         st.table(level_data)
-        # 示例数据
-        categories = ['Category A', 'Category B', 'Category C']
-        values = [50, 30, 20]
 
-        # 创建横向条形图
-        fig, ax = plt.subplots()
-        y_pos = np.arange(len(categories))
-        ax.barh(y_pos, values)
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(categories)
-        ax.invert_yaxis()  # 反转y轴，使得条形图从上到下排序
-        ax.set_xlabel('Values')
+        # 读取数据
+        url = 'https://drive.google.com/file/d/1V-T2u8kSqKItLViiDQCrAOKZsLgA_cqD/view?usp=sharing'
+        file_id = url.split('/')[-2]
+        dwn_url = 'https://drive.google.com/uc?id=' + file_id
+        df = pd.read_csv(dwn_url)
+        
+        # 筛选数据
+        date_filter = df['date'] == '2020-07-01'
+        filtered_df = df[date_filter]
+        top_10_df = filtered_df.nlargest(10, 'dollar_price')
+        
+        # 设置图表样式
+        sns.set_style('whitegrid')
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        # 绘制条形图
+        sns.barplot(x='dollar_price', y='name', data=top_10_df, palette='Spectral_r', ax=ax)
+        
+        # 添加标签和标题
+        ax.set_title('2020 Top 10 Big Mac Index', fontsize=18)
+        ax.set_xlabel('Dollar Price', fontsize=14)
+        ax.set_ylabel('Name', fontsize=14)
+        
+        # 设置Y轴标签字体大小
+        ax.tick_params(axis='y', labelsize=12)
+        
+        # 添加X轴刻度线标签
+        for i in ax.containers:
+            ax.bar_label(i, label=f"${i.get_width():.2f}", label_type='edge', fontsize=10)
         
         # 在Streamlit应用中显示图表
         st.pyplot(fig)
+
+    
     with tab6:
         st.markdown('### Links Overview')
         st.write("Website  [https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
