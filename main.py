@@ -122,7 +122,7 @@ def main():
             use_container_width=True)
         st.table(level_data)
 
-       # 读取数据
+      # 读取数据
         url = 'https://drive.google.com/file/d/1V-T2u8kSqKItLViiDQCrAOKZsLgA_cqD/view?usp=sharing'
         file_id = url.split('/')[-2]
         dwn_url = 'https://drive.google.com/uc?id=' + file_id
@@ -136,11 +136,8 @@ def main():
         # 设置图表样式
         plt.style.use('seaborn-whitegrid')
         
-        # 创建图表
-        fig, ax = plt.subplots(figsize=(10, 6))
-        
-        # 设置背景透明度
-        fig.patch.set_alpha(0.0)
+        # 创建图表，并指定大小
+        fig, ax = plt.subplots(figsize=(6, 4))
         
         # 绘制条形图
         bar_colors = ['#4BAAFF'] * len(top_10_df['name'])
