@@ -122,7 +122,7 @@ def main():
             use_container_width=True)
         st.table(level_data)
 
-        # 读取数据
+       # 读取数据
         url = 'https://drive.google.com/file/d/1V-T2u8kSqKItLViiDQCrAOKZsLgA_cqD/view?usp=sharing'
         file_id = url.split('/')[-2]
         dwn_url = 'https://drive.google.com/uc?id=' + file_id
@@ -134,23 +134,18 @@ def main():
         top_10_df = filtered_df.nlargest(10, 'dollar_price')
         
         # 设置图表样式
-        sns.set_style('whitegrid')
+        plt.style.use('seaborn-whitegrid')
+        
+        # 创建图表
         fig, ax = plt.subplots(figsize=(10, 6))
         
         # 绘制条形图
-        sns.barplot(x='dollar_price', y='name', data=top_10_df, palette='Spectral_r', ax=ax)
+        ax.barh(top_10_df['name'], top_10_df['dollar_price'], color='b')
         
         # 添加标签和标题
         ax.set_title('2020 Top 10 Big Mac Index', fontsize=18)
         ax.set_xlabel('Dollar Price', fontsize=14)
         ax.set_ylabel('Name', fontsize=14)
-        
-        # 设置Y轴标签字体大小
-        ax.tick_params(axis='y', labelsize=12)
-        
-        # 添加X轴刻度线标签
-        for i in ax.containers:
-            ax.bar_label(i, label=f"${i.get_width():.2f}", label_type='edge', fontsize=10)
         
         # 在Streamlit应用中显示图表
         st.pyplot(fig)
