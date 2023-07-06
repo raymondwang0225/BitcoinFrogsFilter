@@ -139,13 +139,21 @@ def main():
         # 创建图表
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        # 绘制条形图
-        ax.barh(top_10_df['name'], top_10_df['dollar_price'], color='b')
+        # 设置背景透明度
+        fig.patch.set_alpha(0.0)
         
-        # 添加标签和标题
-        ax.set_title('2020 Top 10 Big Mac Index', fontsize=18)
-        ax.set_xlabel('Dollar Price', fontsize=14)
-        ax.set_ylabel('Name', fontsize=14)
+        # 绘制条形图
+        bar_colors = ['#4BAAFF'] * len(top_10_df['name'])
+        ax.barh(top_10_df['name'], top_10_df['dollar_price'], color=bar_colors, height=0.6)
+        
+        # 设置文字颜色
+        ax.set_title('2020 Top 10 Big Mac Index', fontsize=18, color='#FAFAFA')
+        ax.set_xlabel('Dollar Price', fontsize=14, color='#FAFAFA')
+        ax.set_ylabel('Name', fontsize=14, color='#FAFAFA')
+        
+        # 设置刻度标签颜色
+        ax.tick_params(axis='x', colors='#FAFAFA')
+        ax.tick_params(axis='y', colors='#FAFAFA')
         
         # 在Streamlit应用中显示图表
         st.pyplot(fig)
