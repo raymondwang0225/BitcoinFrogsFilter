@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import csv
 import plost
-
+from pyg2plot import Plot
 
 
 url = "https://api-mainnet.magiceden.dev/v2/ord/btc/stat?collectionSymbol=bitcoin-frogs"
@@ -120,6 +120,15 @@ def main():
             legend='bottom', 
             use_container_width=True)
         st.table(level_data)
+        # 示例数据
+        tdata = {
+            'Category A': 50,
+            'Category B': 30,
+            'Category C': 20
+        }
+
+        # 创建横向条形图
+        st.bar_chart(tdata, orientation='horizontal')
     with tab6:
         st.markdown('### Links Overview')
         st.write("Website  [https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
