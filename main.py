@@ -58,7 +58,7 @@ def main():
     fpcsv = pd.read_csv("https://raw.githubusercontent.com/raymondwang0225/BitcoinFrogsData/main/data.csv", parse_dates=['timestamp'])
     #level_data = load_level_data(10)
     level_data=pd.read_csv('level_data.csv')
-    
+    whale_data=pd.read_csv('whale.csv')
     
     total_len =[]
     
@@ -90,7 +90,15 @@ def main():
 
     
     
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
+    tab0,tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Top20 Whales","Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
+    with tab0:
+        st.markdown('### Top20 Whales')
+        plost.donut_chart(
+            data= whale_data,
+            theta='amount',
+            color='abridge',
+            legend='bottom', 
+            use_container_width=True)
     with tab1:
         st.markdown('### Floor Price')
         st.line_chart(fpcsv[["timestamp", "floor_price"]],x='timestamp')
