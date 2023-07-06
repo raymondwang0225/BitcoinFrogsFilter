@@ -119,6 +119,7 @@ def main():
             color='range',
             legend='bottom', 
             use_container_width=True)
+        st.table(level_data)
     with tab6:
         st.markdown('### Links Overview')
         st.write("Website  [https://bitcoinfrogs.com/](https://bitcoinfrogs.com/) ")
