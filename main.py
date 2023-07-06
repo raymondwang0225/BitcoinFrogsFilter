@@ -59,6 +59,7 @@ def main():
     #level_data = load_level_data(10)
     level_data=pd.read_csv('level_data.csv')
     whale_data=pd.read_csv('whale.csv')
+    wallet_all_data =pd.read_csv('https://raw.githubusercontent.com/raymondwang0225/CheckFrogWallet/main/wallet_all.csv')
     
     total_len =[]
     
@@ -88,13 +89,11 @@ def main():
     
     
 
-    
-    
     tab0,tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Top15 Whales","Floor Price", "Owners","Total Listed","Total Volume","Listed Price Composition","Links Overview","Useful Links"])
     with tab0:
         st.markdown('### Top15 Whales')
         plost.donut_chart(
-            data= whale_data,
+            data= wallet_all_data,
             theta='amount',
             color='abridge',
             legend='bottom')
