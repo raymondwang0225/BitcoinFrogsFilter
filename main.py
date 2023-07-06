@@ -129,8 +129,8 @@ def main():
 
         # 绘制条形图
         chart = alt.Chart(ddf).mark_bar(color='#4BAAFF').encode(
-            x='OWNED',
-            y='WALLETS'
+            x='WALLETS',
+            y='OWNED'
         ).properties(
             width=500,
             height=400
