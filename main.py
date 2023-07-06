@@ -122,22 +122,21 @@ def main():
             use_container_width=True)
         st.table(level_data)
 
-     # 读取数据
+    # 读取数据
         url = 'https://raw.githubusercontent.com/raymondwang0225/CheckFrogWallet/main/wallet_distribution.csv'
         ddf = pd.read_csv(url)
         
-        # 设置图表样式
-        st.set_option('deprecation.showPyplotGlobalUse', False)
+        # 绘制条形图
+        chart = alt.Chart(ddf).mark_bar(color='#4BAAFF').encode(
+            x='OWNED',
+            y='WALLETS'
+        ).properties(
+            width=500,
+            height=400
+        )
         
-        # 绘制折线图
-        st.line_chart(data=ddf['WALLETS'], use_container_width=True)
-        
-        # 设置折线图颜色
-        plt.gca().lines[0].set_color('#4BAAFF')
-        
-        # 设置X轴标签和Y轴标签
-        st.xlabel('OWNED')
-        st.ylabel('WALLETS')
+        # 显示图表
+        st.altair_chart(chart, use_container_width=True)
 
     
     with tab6:
