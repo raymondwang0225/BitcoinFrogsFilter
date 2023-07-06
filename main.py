@@ -97,8 +97,8 @@ def main():
             data= whale_data,
             theta='amount',
             color='abridge',
-            legend='bottom', 
-            use_container_width=True)
+            legend='bottom')
+        st.table(whale_data)
     with tab1:
         st.markdown('### Floor Price')
         st.line_chart(fpcsv[["timestamp", "floor_price"]],x='timestamp')
