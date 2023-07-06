@@ -154,6 +154,12 @@ def main():
         ax.set_xlabel('Dollar Price', fontsize=14, color='#FAFAFA')
         ax.set_ylabel('Name', fontsize=14, color='#FAFAFA')
         
+        # 移除上、下、左、右的边框
+        ax.spines['top'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        
         # 设置刻度标签颜色
         ax.tick_params(axis='x', colors='#FAFAFA')
         ax.tick_params(axis='y', colors='#FAFAFA')
