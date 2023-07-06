@@ -4,3 +4,4 @@ plost
 numpy
 Pillow
 matplotlib
+seaborn
