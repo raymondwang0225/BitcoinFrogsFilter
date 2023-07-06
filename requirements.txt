@@ -2,4 +2,4 @@ streamlit
 pandas
 plost
 pyg2plot
-matplotlib.pyplot
+matplotlib
