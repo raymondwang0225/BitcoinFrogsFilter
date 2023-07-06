@@ -97,6 +97,7 @@ def main():
             theta='amount',
             color='abridge',
             legend='bottom')
+        st.markdown('### All Holders')
         st.table(wallet_all_data)
     with tab1:
         st.markdown('### Floor Price')
